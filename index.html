@@ -445,6 +445,101 @@
             padding-left: 1.5rem;
         }
 
+        /* Contact form (inside the contact modal) */
+        .contact-honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        .contact-field {
+            margin-top: 1rem;
+        }
+
+        .contact-field label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.35rem;
+        }
+
+        .contact-field input,
+        .contact-field textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+            color: #fff;
+            font-size: 0.85rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .contact-field input:focus,
+        .contact-field textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-field input.has-error,
+        .contact-field textarea.has-error {
+            border-color: #f87171;
+        }
+
+        .contact-field-error {
+            display: none;
+            color: #f87171;
+            font-size: 0.72rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact-field-error.is-visible {
+            display: block;
+        }
+
+        .contact-submit-btn {
+            margin-top: 1.25rem;
+            width: 100%;
+            background: var(--color-accent);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.65rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+        }
+
+        .contact-submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .contact-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .contact-status {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            min-height: 1em;
+        }
+
+        .contact-status.is-success {
+            color: #a3e635;
+        }
+
+        .contact-status.is-error {
+            color: #f87171;
+        }
+
         /* Quick-reply chips (merged Contact section) */
         .quick-reply-row {
             display: flex;
@@ -691,7 +786,7 @@
 <img alt="Ali (A1iRoX)" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB80wUOccS4eOG2n4pOR5wOBxwIoy4w42kojCaMwwN4uz3dgVsnos0YNF2ta1UxsXKab_NukTANiN7YT8wu_l5lIkeyxgXOBZmUZjpQS1GwfOhLbDlpKQZCMjgQfAeKFs6Gojy_UKyu27gxZOwhYlh3ieok7THv6xZGABWqguxZMKUaoqZIxXgXuuWG7rDBomKj-O9Nc1ny2KOlST97ATxnrdd2CMxMNgg9FYAgasmMzSpMlFQnfL5mOrD-tFVD45bHZXhyv5HZ6Zx8MHI"/>
 </div>
 <div class="chat-bubble">
-<p class="chat-bubble-name">A1iRoX <span class="chat-bubble-time">آنلاین 🟢</span></p>
+<p class="chat-bubble-name">A1iRoX <span class="chat-bubble-time" data-i18n="about-status-online">آنلاین 🟢</span></p>
 <div class="space-y-3 text-gray-300 leading-relaxed text-base">
 <p data-i18n="text-about-1">سلام، من علی هستم، متولد سال ۱۳۸۲.
 از سال ۱۴۰۱ در حوزه استریم فعالیت می‌کنم و اینجا قراره با هم از بازی، گپ‌وگفت و لحظه‌های خوب لذت ببریم.</p>
@@ -1031,7 +1126,7 @@
 <p class="text-gray-500 text-[10px] uppercase tracking-widest" data-i18n="footer-copy">© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.</p>
 </div>
 <div class="flex gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-500">
-<a class="hover:text-cyber-orange transition-colors" data-i18n="footer-contact-email" href="mailto:alifarajiog@gmail.com?subject=Collaboration">تماس با من</a>
+<button class="hover:text-cyber-orange transition-colors" data-i18n="footer-contact-email" id="contact-open-btn" type="button">تماس با من</button>
 <button class="hover:text-cyber-orange transition-colors" data-i18n="footer-privacy" id="privacy-open-btn" type="button">حریم خصوصی</button>
 </div>
 </footer>
@@ -1051,6 +1146,55 @@
 اگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.</p>
 </div>
 </div>
+
+<!-- Contact form modal -->
+<div class="privacy-modal-overlay" id="contact-modal-overlay">
+<div class="privacy-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+<button aria-label="Close" class="privacy-modal-close" id="contact-modal-close" type="button">×</button>
+<p class="chat-bubble-name" id="contact-modal-title" data-i18n="contact-title">تماس با من</p>
+<form id="contact-form" novalidate>
+<input aria-label="honeypot" class="contact-honeypot" name="_honey" tabindex="-1" type="text"/>
+<input name="_subject" type="hidden" value="New message from A1iRoX site"/>
+<input name="_captcha" type="hidden" value="false"/>
+<div class="contact-field">
+<label data-i18n="contact-label-name" for="contact-name">اسم شما</label>
+<input data-i18n-placeholder="contact-ph-name" id="contact-name" name="name" placeholder="مثلاً: علی" required="" type="text"/>
+<span class="contact-field-error" id="contact-name-error"></span>
+</div>
+<div class="contact-field">
+<label data-i18n="contact-label-email" for="contact-email">ایمیل شما</label>
+<input data-i18n-placeholder="contact-ph-email" id="contact-email" name="email" placeholder="مثلاً: ali@gmail.com" required="" type="email"/>
+<span class="contact-field-error" id="contact-email-error"></span>
+</div>
+<div class="contact-field">
+<label data-i18n="contact-label-message" for="contact-message">پیام شما</label>
+<textarea data-i18n-placeholder="contact-ph-message" id="contact-message" name="message" placeholder="مثلاً: سلام، می‌خواستم درباره‌ی همکاری صحبت کنم..." required="" rows="4"></textarea>
+<span class="contact-field-error" id="contact-message-error"></span>
+</div>
+<button class="contact-submit-btn" data-i18n="contact-submit" type="submit">ارسال پیام</button>
+<p class="contact-status" id="contact-status"></p>
+</form>
+</div>
+</div>
+
+<!-- One-time FormSubmit activation form. Hidden by default — only shows when
+     visiting the page with ?activate in the URL (e.g. index.html?activate).
+     Uses a plain POST (no AJAX) since FormSubmit needs a real page-navigation
+     submission to trigger the confirmation email the very first time. -->
+<div id="activate-section" style="display:none; position:fixed; inset:0; z-index:200; background:#0a0a0a; color:#eee; align-items:center; justify-content:center; font-family:sans-serif;">
+<form action="https://formsubmit.co/aliroxpartnership@gmail.com" method="POST" style="background:#1a1a1a; padding:24px; border-radius:12px; width:300px;">
+<h3 style="margin-top:0;">فعال‌سازی فرم تماس</h3>
+<input name="name" placeholder="اسم (تست)" required="" style="width:100%; margin-bottom:12px; padding:8px; border-radius:6px; border:1px solid #444; background:#222; color:#fff; box-sizing:border-box;" type="text" value="Activation Test"/>
+<input name="email" placeholder="ایمیل" required="" style="width:100%; margin-bottom:12px; padding:8px; border-radius:6px; border:1px solid #444; background:#222; color:#fff; box-sizing:border-box;" type="email" value="test@example.com"/>
+<textarea name="message" placeholder="پیام" required="" style="width:100%; margin-bottom:12px; padding:8px; border-radius:6px; border:1px solid #444; background:#222; color:#fff; box-sizing:border-box;">این یک ارسال تستی برای فعال‌سازی فرم تماس سایته.</textarea>
+<button style="width:100%; padding:10px; background:#f97316; color:#000; font-weight:bold; border:none; border-radius:6px; cursor:pointer;" type="submit">ارسال تستی</button>
+</form>
+</div>
+<script>
+    if (window.location.search.indexOf('activate') !== -1) {
+        document.getElementById('activate-section').style.display = 'flex';
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
         const translations = {
@@ -1131,7 +1275,22 @@
                 "footer-contact-email": "Contact With Me",
                 "footer-terms": "Terms",
                 "privacy-title": "Privacy Policy",
-                "privacy-body": "This site does not collect, store, or transmit any personal information about you.\nThere's no sign-up form, nothing about you is saved — and no data is ever leaked or shared with any third party.\n\nThe buttons on this site (Discord, Telegram, Instagram, YouTube, Kick, Donate) simply take you to those platforms; anything that happens there is governed by that platform's own rules, not this site.\n\nThis site belongs to me and works mostly as a personal introduction or online business card, not a service or platform. The idea and code behind it are free for anyone to use or take inspiration from.\n\nIf you have any questions, feel free to reach out through Discord or Telegram."
+                "privacy-body": "This site does not collect, store, or transmit any personal information about you.\nThere's no sign-up form, nothing about you is saved — and no data is ever leaked or shared with any third party.\n\nThe buttons on this site (Discord, Telegram, Instagram, YouTube, Kick, Donate) simply take you to those platforms; anything that happens there is governed by that platform's own rules, not this site.\n\nThis site belongs to me and works mostly as a personal introduction or online business card, not a service or platform. The idea and code behind it are free for anyone to use or take inspiration from.\n\nIf you have any questions, feel free to reach out through Discord or Telegram.",
+                "contact-title": "Contact Me",
+                "contact-label-name": "Your name",
+                "contact-label-email": "Your email",
+                "contact-label-message": "Your message",
+                "contact-submit": "Send message",
+                "contact-sending": "Sending...",
+                "contact-success": "Sent! I'll get back to you soon.",
+                "contact-error": "Something went wrong. Please try again.",
+                "about-status-online": "Online 🟢",
+                "contact-err-name": "Please enter your name.",
+                "contact-err-email": "Please enter a valid email address.",
+                "contact-err-message": "Please enter a message.",
+                "contact-ph-name": "e.g. Ali",
+                "contact-ph-email": "e.g. ali@gmail.com",
+                "contact-ph-message": "e.g. Hi, I wanted to talk about a collab..."
             },
             fa: {
                 "nav-overview": "نمای کلی",
@@ -1210,7 +1369,22 @@
                 "footer-contact-email": "تماس با من",
                 "footer-terms": "قوانین",
                 "privacy-title": "حریم خصوصی",
-                "privacy-body": "این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.\nنه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.\n\nدکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.\n\nاین سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.\n\nاگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید."
+                "privacy-body": "این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.\nنه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.\n\nدکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.\n\nاین سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.\n\nاگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.",
+                "contact-title": "تماس با من",
+                "contact-label-name": "اسم شما",
+                "contact-label-email": "ایمیل شما",
+                "contact-label-message": "پیام شما",
+                "contact-submit": "ارسال پیام",
+                "contact-sending": "در حال ارسال...",
+                "contact-success": "ارسال شد! به‌زودی جواب می‌دم.",
+                "contact-error": "مشکلی پیش اومد، دوباره امتحان کن.",
+                "about-status-online": "آنلاین 🟢",
+                "contact-err-name": "لطفاً اسمتون رو وارد کنید.",
+                "contact-err-email": "لطفاً یه ایمیل معتبر وارد کنید.",
+                "contact-err-message": "لطفاً پیامتون رو وارد کنید.",
+                "contact-ph-name": "مثلاً: علی",
+                "contact-ph-email": "مثلاً: ali@gmail.com",
+                "contact-ph-message": "مثلاً: سلام، می‌خواستم درباره‌ی همکاری صحبت کنم..."
             }
         };
 
@@ -1239,6 +1413,13 @@
                 if (translations[lang][key]) {
                     const val = translations[lang][key];
                     $(this).html(val.replace(/\n/g, '<br>'));
+                }
+            });
+
+            $('[data-i18n-placeholder]').each(function() {
+                const key = $(this).data('i18n-placeholder');
+                if (translations[lang][key]) {
+                    $(this).attr('placeholder', translations[lang][key]);
                 }
             });
 
@@ -1306,10 +1487,88 @@
                     $('#privacy-modal-overlay').removeClass('is-open');
                 }
             });
+
+            // Contact modal open/close
+            $('#contact-open-btn').on('click', function () {
+                $('#contact-modal-overlay').addClass('is-open');
+            });
+            $('#contact-modal-close, #contact-modal-overlay').on('click', function (e) {
+                if (e.target === this) {
+                    $('#contact-modal-overlay').removeClass('is-open');
+                }
+            });
+
             $(document).on('keydown', function (e) {
                 if (e.key === 'Escape') {
                     $('#privacy-modal-overlay').removeClass('is-open');
+                    $('#contact-modal-overlay').removeClass('is-open');
                 }
+            });
+
+            // Contact form submission — sends the message straight to the
+            // site owner's inbox via FormSubmit's AJAX endpoint, no page reload.
+            $('#contact-form').on('submit', function (e) {
+                e.preventDefault();
+                var $form = $(this);
+                var $btn = $form.find('.contact-submit-btn');
+                var $status = $('#contact-status');
+                var currentLang = $('html').attr('lang') === 'fa' ? 'fa' : 'en';
+                var t = translations[currentLang];
+
+                // Clear previous error states
+                $form.find('.contact-field-error').removeClass('is-visible').text('');
+                $form.find('input, textarea').removeClass('has-error');
+
+                var name = $('#contact-name').val().trim();
+                var email = $('#contact-email').val().trim();
+                var message = $('#contact-message').val().trim();
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var isValid = true;
+
+                if (!name) {
+                    $('#contact-name').addClass('has-error');
+                    $('#contact-name-error').addClass('is-visible').text(t['contact-err-name']);
+                    isValid = false;
+                }
+                if (!email || !emailPattern.test(email)) {
+                    $('#contact-email').addClass('has-error');
+                    $('#contact-email-error').addClass('is-visible').text(t['contact-err-email']);
+                    isValid = false;
+                }
+                if (!message) {
+                    $('#contact-message').addClass('has-error');
+                    $('#contact-message-error').addClass('is-visible').text(t['contact-err-message']);
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    return;
+                }
+
+                $status.removeClass('is-success is-error').text('');
+                $btn.prop('disabled', true).text(t['contact-sending']);
+
+                fetch('https://formsubmit.co/ajax/aliroxpartnership@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: new FormData(this)
+                })
+                    .then(function (res) {
+                        if (!res.ok) throw new Error('bad response');
+                        return res.json();
+                    })
+                    .then(function () {
+                        $status.addClass('is-success').text(t['contact-success']);
+                        $form[0].reset();
+                    })
+                    .catch(function () {
+                        $status.addClass('is-error').text(t['contact-error']);
+                    })
+                    .finally(function () {
+                        $btn.prop('disabled', false).text(t['contact-submit']);
+                    });
             });
 
             var isMobileViewport = window.innerWidth < 768;
