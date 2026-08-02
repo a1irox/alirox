@@ -1152,7 +1152,7 @@
 <div class="privacy-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
 <button aria-label="Close" class="privacy-modal-close" id="contact-modal-close" type="button">×</button>
 <p class="chat-bubble-name" id="contact-modal-title" data-i18n="contact-title">تماس با من</p>
-<form id="contact-form" novalidate>
+<form action="https://formsubmit.co/aliroxpartnership@gmail.com" id="contact-form" method="POST" novalidate target="contact-hidden-frame">
 <input aria-label="honeypot" class="contact-honeypot" name="_honey" tabindex="-1" type="text"/>
 <input name="_subject" type="hidden" value="New message from A1iRoX site"/>
 <input name="_captcha" type="hidden" value="false"/>
@@ -1176,6 +1176,7 @@
 </form>
 </div>
 </div>
+<iframe id="contact-hidden-frame" name="contact-hidden-frame" style="display:none;"></iframe>
 
 <!-- One-time FormSubmit activation form. Hidden by default — only shows when
      visiting the page with ?activate in the URL (e.g. index.html?activate).
@@ -1548,27 +1549,46 @@
                 $status.removeClass('is-success is-error').text('');
                 $btn.prop('disabled', true).text(t['contact-sending']);
 
-                fetch('https://formsubmit.co/ajax/aliroxpartnership@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    body: new FormData(this)
-                })
-                    .then(function (res) {
-                        if (!res.ok) throw new Error('bad response');
-                        return res.json();
-                    })
-                    .then(function () {
+                var formEl = this;
+
+                // Fallback: some mobile browsers / in-app browsers (Instagram,
+                // Telegram, etc.) block the fetch()+CORS call below. If that
+                // happens, submit the form for real into a hidden iframe —
+                // this always works because it's a normal form POST, not an
+                // AJAX request subject to CORS restrictions.
+                function submitViaHiddenFrame() {
+                    formEl.submit();
+                    setTimeout(function () {
                         $status.addClass('is-success').text(t['contact-success']);
-                        $form[0].reset();
-                    })
-                    .catch(function () {
-                        $status.addClass('is-error').text(t['contact-error']);
-                    })
-                    .finally(function () {
                         $btn.prop('disabled', false).text(t['contact-submit']);
-                    });
+                        formEl.reset();
+                    }, 1200);
+                }
+
+                if (window.fetch) {
+                    fetch('https://formsubmit.co/ajax/aliroxpartnership@gmail.com', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: new FormData(formEl)
+                    })
+                        .then(function (res) {
+                            if (!res.ok) throw new Error('bad response');
+                            return res.json();
+                        })
+                        .then(function () {
+                            $status.addClass('is-success').text(t['contact-success']);
+                            $form[0].reset();
+                            $btn.prop('disabled', false).text(t['contact-submit']);
+                        })
+                        .catch(function () {
+                            // fetch failed (likely CORS / in-app browser) — fall back
+                            submitViaHiddenFrame();
+                        });
+                } else {
+                    submitViaHiddenFrame();
+                }
             });
 
             var isMobileViewport = window.innerWidth < 768;
