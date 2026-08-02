@@ -53,6 +53,15 @@
             --font-family: "Vazirmatn", sans-serif;
         }
 
+        /* Latin-style letter-spacing (tracking-widest etc.) breaks the
+           cursive joining of Persian script, making labels look broken
+           apart instead of neat — so it's disabled whenever the page is
+           in RTL/Persian mode. */
+        [dir="rtl"] .tracking-widest,
+        [dir="rtl"] .tracking-tighter {
+            letter-spacing: normal;
+        }
+
         body {
             background-color: var(--color-bg);
             color: var(--color-paragraph);
@@ -746,30 +755,30 @@
 <svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </a>
 </div>
-<div class="w-full space-y-4 text-left border-t border-white/5 pt-6 rtl:text-right">
-<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="w-full space-y-4 text-left border-t border-white/5 pt-6">
+<div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
-<div class="rtl:text-right">
+<div class="flex-1 min-w-0 text-left rtl:text-right">
 <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-name">نام واقعی</p>
 <p class="text-sm text-gray-200" data-i18n="val-name">علی فرجی</p>
 </div>
 </div>
-<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
-<div class="rtl:text-right">
+<div class="flex-1 min-w-0 text-left rtl:text-right">
 <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-birthday">تاریخ تو‌لد</p>
 <p class="text-sm text-gray-200" data-i18n="val-birthday">۲۴ شهریور ۱۳۸۲</p>
 </div>
 </div>
-<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="flex items-center gap-4">
 <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
-<div class="rtl:text-right">
+<div class="flex-1 min-w-0 text-left rtl:text-right">
 <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-location">موقعیت</p>
 <p class="text-sm text-gray-200" data-i18n="val-location">قزوین، ایران</p>
 </div>
@@ -1155,7 +1164,7 @@
 <button aria-label="Close" class="privacy-modal-close" id="contact-modal-close" type="button">×</button>
 <p class="chat-bubble-name" id="contact-modal-title" data-i18n="contact-title">تماس با من</p>
 <form action="https://formsubmit.co/aliroxpartnership@gmail.com" id="contact-form" method="POST" novalidate target="contact-hidden-frame">
-<input aria-label="honeypot" class="contact-honeypot" name="_honey" tabindex="-1" type="text"/>
+<input aria-hidden="true" aria-label="honeypot" autocomplete="off" class="contact-honeypot" name="_honey" tabindex="-1" type="text"/>
 <input name="_subject" type="hidden" value="New message from A1iRoX site"/>
 <input name="_captcha" type="hidden" value="false"/>
 <div class="contact-field">
@@ -1553,44 +1562,18 @@
 
                 var formEl = this;
 
-                // Fallback: some mobile browsers / in-app browsers (Instagram,
-                // Telegram, etc.) block the fetch()+CORS call below. If that
-                // happens, submit the form for real into a hidden iframe —
-                // this always works because it's a normal form POST, not an
-                // AJAX request subject to CORS restrictions.
-                function submitViaHiddenFrame() {
-                    formEl.submit();
-                    setTimeout(function () {
-                        $status.addClass('is-success').text(t['contact-success']);
-                        $btn.prop('disabled', false).text(t['contact-submit']);
-                        formEl.reset();
-                    }, 1200);
-                }
-
-                if (window.fetch) {
-                    fetch('https://formsubmit.co/ajax/aliroxpartnership@gmail.com', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json'
-                        },
-                        body: new FormData(formEl)
-                    })
-                        .then(function (res) {
-                            if (!res.ok) throw new Error('bad response');
-                            return res.json();
-                        })
-                        .then(function () {
-                            $status.addClass('is-success').text(t['contact-success']);
-                            $form[0].reset();
-                            $btn.prop('disabled', false).text(t['contact-submit']);
-                        })
-                        .catch(function () {
-                            // fetch failed (likely CORS / in-app browser) — fall back
-                            submitViaHiddenFrame();
-                        });
-                } else {
-                    submitViaHiddenFrame();
-                }
+                // Always submit via the hidden iframe: a real form POST,
+                // not an AJAX/fetch call. This removes the inconsistency
+                // some mobile browsers had with the old fetch()+CORS path
+                // (which would randomly succeed or silently fail depending
+                // on network/browser conditions) — a native form submit
+                // always fires the same way, every time.
+                formEl.submit();
+                setTimeout(function () {
+                    $status.addClass('is-success').text(t['contact-success']);
+                    $btn.prop('disabled', false).text(t['contact-submit']);
+                    formEl.reset();
+                }, 1200);
             });
 
             var isMobileViewport = window.innerWidth < 768;
