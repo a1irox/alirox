@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" dir="ltr" lang="en" style="">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>A1iRoX Portfolio - Cyber-Luxe Noir</title>
+<meta content="Official portfolio of A1iRoX - Digital Pioneer, Gamer, and Content Creator." name="description"/>
+<!-- External Dependencies -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;family=Sora:wght@400;700;800&amp;family=JetBrains+Mono&amp;family=Vazirmatn:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ffb690",
+                        "primary-container": "#f97316",
+                        "on-primary-container": "#582200",
+                        "surface": "#121414",
+                        "surface-container": "#1e2020",
+                        "on-surface": "#e3e2e2",
+                        "cyber-orange": "#f97316",
+                        "noir-black": "#0a0a0a",
+                        "noir-card": "#141414",
+                    },
+                    fontFamily: {
+                        "headline-xl": ["Sora", "Vazirmatn", "sans-serif"],
+                        "label-sm": ["JetBrains Mono", "Vazirmatn", "monospace"],
+                        "body-md": ["Poppins", "Vazirmatn", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        :root {
+            --font-family: "Poppins", "Vazirmatn", sans-serif;
+            --color-bg: #121414;
+            --color-heading: #fcfcfc;
+            --color-paragraph: #d6d6d6;
+            --color-border: #383838;
+            --color-accent: #f97316;
+            --color-surface-1: rgba(30, 30, 31, 0.4);
+            --color-gradient: linear-gradient(137.84deg, #f97316 26.31%, #ffb690 93.75%);
+            --radius-20: 20px;
+        }
+
+        [dir="rtl"] {
+            --font-family: "Vazirmatn", sans-serif;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-paragraph);
+            font-family: var(--font-family);
+            font-size: 15px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #particles-js {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #0a0a0a;
+        }
+
+        .box-outer {
+            background-color: var(--color-surface-1);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-20);
+            padding: 1.875rem;
+            position: relative;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: box-shadow 0.6s ease, border-color 0.6s ease;
+        }
+
+        /* Section Highlight Effect */
+        .section-highlight {
+            border-color: #f97316 !important;
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.4), inset 0 0 15px rgba(249, 115, 22, 0.3);
+        }
+
+        .quick-link-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #9ca3af;
+            transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
+        }
+
+        .quick-link-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .quick-link-icon:hover {
+            color: var(--ql-color, #f97316);
+            border-color: var(--ql-color, #f97316);
+            background-color: color-mix(in srgb, var(--ql-color, #f97316) 12%, transparent);
+            transform: translateY(-2px);
+        }
+
+        .title--h1 {
+            font-family: 'Sora', 'Vazirmatn', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.0625rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .title__separate {
+            margin-bottom: 2.3125rem;
+            position: relative;
+        }
+
+        .title__separate::before {
+            content: "";
+            background: var(--color-gradient);
+            border-radius: 0.5rem;
+            height: 0.3125rem;
+            position: absolute;
+            bottom: -1.0625rem;
+            left: 0;
+            width: 2.5rem;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+
+        [dir="rtl"] .title__separate::before {
+            left: auto;
+            right: 0;
+        }
+
+        .sidebar .avatar-box {
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid var(--color-accent);
+            box-sizing: border-box;
+            box-shadow: 0 0 15px 2px rgba(249, 115, 22, 0.6), 0 0 35px rgba(249, 115, 22, 0.35);
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar .avatar-box img {
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Improved Navigation Styling */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            padding-bottom: 4px;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-accent);
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+
+        .nav-link.active {
+            color: var(--color-accent);
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px rgba(249, 115, 22, 0.8);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        header {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        [dir="rtl"] .border-l-4 {
+            border-left-width: 0;
+            border-right-width: 4px;
+        }
+        
+        [dir="rtl"] .rounded-r-xl {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 0.75rem;
+            border-bottom-left-radius: 0.75rem;
+        }
+
+        /* Swiper Custom Pagination */
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.2) !important;
+            opacity: 1 !important;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--color-accent) !important;
+            box-shadow: 0 0 10px var(--color-accent);
+        }
+        .setup-pagination,
+        .rules-pagination {
+            position: static !important;
+            margin-top: 1.25rem;
+            text-align: center;
+        }
+
+        /* About Me quick facts — continuous marquee */
+        .text-about-accent {
+            color: #a3e635;
+        }
+
+        .about-marquee {
+            overflow: hidden;
+            /* Force ltr layout context so the shrink-to-fit track always starts
+               flush at the left edge — in rtl mode a width:max-content block is
+               right-aligned by default, which pushed the whole animated track
+               off-screen and made it disappear in Persian mode. */
+            direction: ltr;
+            /* Extra vertical room so the hover glow never gets clipped at the top/bottom edge */
+            padding: 20px 0;
+            margin: -20px 0;
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
+            mask-image: linear-gradient(90deg, transparent, black 24px, black calc(100% - 24px), transparent);
+        }
+
+        .about-marquee-track {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            width: max-content;
+            animation: about-marquee-scroll 50s linear infinite;
+        }
+
+        .about-marquee:hover .about-marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes about-marquee-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .about-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 0 0 auto;
+            width: clamp(260px, 34vw, 340px);
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            /* isolate so the box-shadow always paints on top of neighboring cards, never gets cut by them */
+            position: relative;
+            z-index: 1;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card p {
+            /* Let each card's text pick its own reading direction/alignment
+               from its content (Persian vs English), independent of the
+               track's forced ltr layout direction above. */
+            unicode-bidi: plaintext;
+        }
+
+        .about-card:hover {
+            background-color: rgba(163, 230, 53, 0.08);
+            border-color: rgba(163, 230, 53, 0.55);
+            box-shadow: 0 0 18px rgba(163, 230, 53, 0.3);
+            z-index: 2;
+        }
+
+        .about-arrow-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            color: #a3e635;
+            filter: drop-shadow(0 0 6px rgba(163, 230, 53, 0.6));
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .about-marquee-track {
+                animation: none;
+            }
+        }
+
+        /* Chat-style intro bubble */
+        .chat-bubble-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .chat-bubble-avatar {
+            position: relative;
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+        }
+
+        .chat-bubble-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .chat-online-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #22c55e;
+            border: 2px solid var(--color-surface-1);
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+        }
+
+        [dir="rtl"] .chat-online-dot {
+            right: auto;
+            left: 0;
+        }
+
+        .chat-bubble {
+            position: relative;
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px 18px 18px 18px;
+            padding: 1.1rem 1.4rem;
+            max-width: 640px;
+        }
+
+        [dir="rtl"] .chat-bubble {
+            border-radius: 18px 4px 18px 18px;
+        }
+
+        .chat-bubble-name {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-bubble-time {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: rgba(163, 230, 53, 0.85);
+        }
+
+        /* Privacy modal */
+        .privacy-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .privacy-modal-overlay.is-open {
+            display: flex;
+        }
+
+        .privacy-modal {
+            max-width: 520px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: #1a1c1c;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: privacy-modal-pop 0.25s ease;
+        }
+
+        @keyframes privacy-modal-pop {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .privacy-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: var(--color-paragraph);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        [dir="rtl"] .privacy-modal-close {
+            right: auto;
+            left: 14px;
+        }
+
+        .privacy-modal-close:hover {
+            color: var(--color-accent);
+        }
+
+        .privacy-modal .chat-bubble-name {
+            padding-right: 1.5rem;
+        }
+
+        [dir="rtl"] .privacy-modal .chat-bubble-name {
+            padding-right: 0;
+            padding-left: 1.5rem;
+        }
+
+        /* Quick-reply chips (merged Contact section) */
+        .quick-reply-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .quick-reply-chip {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.65rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            color: #d1d5db;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .quick-reply-chip svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .quick-reply-chip:hover {
+            transform: translateY(-3px);
+            color: var(--chip-color, #f97316);
+            border-color: var(--chip-color, #f97316);
+            background-color: color-mix(in srgb, var(--chip-color, #f97316) 12%, transparent);
+            box-shadow: 0 6px 18px color-mix(in srgb, var(--chip-color, #f97316) 30%, transparent);
+        }
+
+        .quick-reply-chip--static {
+            cursor: default;
+        }
+
+        .quick-reply-chip--static:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .chip-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            width: max-content;
+            max-width: 220px;
+            text-align: center;
+            background: rgba(12, 12, 12, 0.97);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.55rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            line-height: 1.5;
+            color: #d1d5db;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 20;
+        }
+
+        .chip-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(12, 12, 12, 0.97);
+        }
+
+        .quick-reply-chip:hover .chip-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .chip-tooltip {
+                display: none;
+            }
+        }
+
+        /* Contact card descriptions */
+        .contact-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(214, 214, 214, 0.65);
+            text-align: center;
+            margin: 0;
+        }
+        .contact-desc--accent {
+            color: rgba(255, 182, 144, 0.85);
+        }
+
+        /* Stream Rules chat bubbles */
+        .rule-bubble {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        [dir="rtl"] .rule-bubble {
+            font-family: "Vazirmatn", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .rule-bubble:hover {
+            background-color: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .rule-bubble--footer {
+            border-top: none;
+        }
+
+        /* Reliable, non-jumpy sticky sidebar (replaces the sticky-kit plugin behavior) */
+        @media (min-width: 1024px) {
+            .sticky-column {
+                position: sticky;
+                top: 120px;
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+<div id="particles-js"></div>
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center" data-purpose="main-header">
+<div class="flex flex-col leading-tight">
+<div class="text-xl font-extrabold tracking-tighter text-white">
+            A1i<span class="text-cyber-orange">RoX</span>
+</div>
+<div class="text-[11px] font-medium text-gray-400 mt-0.5" style="font-family: 'Vazirmatn', sans-serif;">
+            به یاد جاوید نام‌های وطن 🖤
+</div>
+</div>
+<nav class="hidden md:flex gap-8 text-sm font-medium text-gray-400" id="main-nav">
+<a class="nav-link active" data-i18n="nav-overview" href="#overview">نمای کلی</a>
+<a class="nav-link" data-i18n="nav-rules" href="#rules">Community Rules</a>
+<a class="nav-link" data-i18n="nav-setup" href="#setup">سیستم</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex bg-white/5 p-1 rounded-lg text-[10px] font-bold border border-white/10" id="lang-switcher">
+<button class="px-3 py-1 rounded transition-colors hover:text-white text-gray-400" id="btn-fa" onclick="switchLang('fa')">FA</button>
+<button class="px-3 py-1 rounded shadow-lg bg-cyber-orange text-white" id="btn-en" onclick="switchLang('en')">EN</button>
+</div>
+<button aria-expanded="false" aria-label="Toggle menu" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 bg-white/5 text-gray-300 active:bg-white/10" id="mobile-menu-btn" type="button">
+<svg class="w-5 h-5" fill="none" id="icon-menu-open" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5 hidden" fill="none" id="icon-menu-close" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<nav class="md:hidden hidden flex-col gap-1 absolute top-full left-0 w-full px-6 py-4 text-sm font-medium text-gray-400" id="mobile-nav" style="background: rgba(10, 10, 10, 0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+<a class="nav-link py-3 border-b border-white/5 active" data-i18n="nav-overview" href="#overview">نمای کلی</a>
+<a class="nav-link py-3 border-b border-white/5" data-i18n="nav-rules" href="#rules">Community Rules</a>
+<a class="nav-link py-3" data-i18n="nav-setup" href="#setup">سیستم</a>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-4 pt-32 pb-20 sticky-parent">
+<div class="flex flex-col lg:flex-row lg:items-start gap-8">
+<!-- Profile Card (Sidebar) -->
+<aside class="lg:w-1/4 sticky-column sidebar">
+<div class="box-outer flex flex-col items-center text-center">
+<div class="avatar-box w-24 h-24 mx-auto aspect-square">
+<img alt="Ali (A1iRoX)" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB80wUOccS4eOG2n4pOR5wOBxwIoy4w42kojCaMwwN4uz3dgVsnos0YNF2ta1UxsXKab_NukTANiN7YT8wu_l5lIkeyxgXOBZmUZjpQS1GwfOhLbDlpKQZCMjgQfAeKFs6Gojy_UKyu27gxZOwhYlh3ieok7THv6xZGABWqguxZMKUaoqZIxXgXuuWG7rDBomKj-O9Nc1ny2KOlST97ATxnrdd2CMxMNgg9FYAgasmMzSpMlFQnfL5mOrD-tFVD45bHZXhyv5HZ6Zx8MHI"/>
+</div>
+<h1 class="sidebar__name text-white mt-4 text-xl font-bold">A1iRoX</h1>
+<div class="badge mb-6 inline-block bg-white/5 border border-white/10 text-gray-400 px-4 py-1.5 rounded-full text-xs font-semibold" data-i18n="badge-creator">تولیدکننده محتوا</div>
+<div class="quick-links flex items-center justify-center gap-3 mb-8">
+<a aria-label="Kick" class="quick-link-icon" href="https://kick.com/A1iRox" rel="noopener noreferrer" style="--ql-color: #53fc18;" target="_blank">
+<svg viewbox="0 0 24 24"><text dominant-baseline="central" fill="currentColor" font-family="Arial, sans-serif" font-size="18" font-weight="800" text-anchor="middle" x="12" y="12.5">K</text></svg>
+</a>
+<a aria-label="Discord" class="quick-link-icon" href="https://discord.gg/fAJjcCQnuj" rel="noopener noreferrer" style="--ql-color: #5865f2;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.317 4.3928a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path></svg>
+</a>
+<a aria-label="Instagram" class="quick-link-icon" href="https://www.instagram.com/alirox.og" rel="noopener noreferrer" style="--ql-color: #e1306c;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a aria-label="Telegram" class="quick-link-icon" href="https://t.me/aliroxtg" rel="noopener noreferrer" style="--ql-color: #29abe2;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212-.07-.062-.174-.041-.249-.024-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.39 4.025-1.63 4.476-1.638z"></path></svg>
+</a>
+<a aria-label="Donate" class="quick-link-icon" href="https://donofa.ir/alirox/" rel="noopener noreferrer" style="--ql-color: #f97316;" target="_blank">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+<div class="w-full space-y-4 text-left border-t border-white/5 pt-6 rtl:text-right">
+<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="rtl:text-right">
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-name">نام واقعی</p>
+<p class="text-sm text-gray-200" data-i18n="val-name">علی فرجی</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="rtl:text-right">
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-birthday">تاریخ تو‌لد</p>
+<p class="text-sm text-gray-200" data-i18n="val-birthday">۲۴ شهریور ۱۳۸۲</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rtl:flex-row-reverse">
+<div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-cyber-orange shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="rtl:text-right">
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold" data-i18n="label-location">موقعیت</p>
+<p class="text-sm text-gray-200" data-i18n="val-location">قزوین، ایران</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="lg:w-3/4 space-y-8">
+<!-- Overview Section -->
+<section class="box-outer section-anchor" id="overview">
+<h2 class="title--h1 title__separate" data-i18n="title-about">درباره من</h2>
+
+<div class="chat-bubble-wrap">
+<div class="chat-bubble-avatar">
+<img alt="Ali (A1iRoX)" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB80wUOccS4eOG2n4pOR5wOBxwIoy4w42kojCaMwwN4uz3dgVsnos0YNF2ta1UxsXKab_NukTANiN7YT8wu_l5lIkeyxgXOBZmUZjpQS1GwfOhLbDlpKQZCMjgQfAeKFs6Gojy_UKyu27gxZOwhYlh3ieok7THv6xZGABWqguxZMKUaoqZIxXgXuuWG7rDBomKj-O9Nc1ny2KOlST97ATxnrdd2CMxMNgg9FYAgasmMzSpMlFQnfL5mOrD-tFVD45bHZXhyv5HZ6Zx8MHI"/>
+</div>
+<div class="chat-bubble">
+<p class="chat-bubble-name">A1iRoX <span class="chat-bubble-time">آنلاین 🟢</span></p>
+<div class="space-y-3 text-gray-300 leading-relaxed text-base">
+<p data-i18n="text-about-1">سلام، من علی هستم، متولد سال ۱۳۸۲.
+از سال ۱۴۰۱ در حوزه استریم فعالیت می‌کنم و اینجا قراره با هم از بازی، گپ‌وگفت و لحظه‌های خوب لذت ببریم.</p>
+<p data-i18n="text-about-2">هدف من ساختن یک جامعه بزرگ، سالم و بدون حاشیه از طریق محتوای سرگرم‌کننده و تعامل با شماست. احترام متقابل، رعایت قوانین و حفظ انرژی مثبت اولویت‌های منه. خوشحالم که این مسیر رو با شما ادامه می‌دم. 💚</p>
+</div>
+</div>
+</div>
+
+<div class="mt-8">
+<p class="text-[10px] uppercase tracking-widest text-about-accent font-bold mb-4" data-i18n="label-about-facts">نکات مهم</p>
+<div class="about-marquee">
+<div class="about-marquee-track" id="about-marquee-track">
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-1">برای همکاری و پارتنرشیپ یا حتی اسپانسرینگ میتونید از طریق دیسکورد تیکت باز کنید تا بتونیم در کنار هم بترکونیم</p>
+</div>
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-2">هدف من از استریم و تولید محتوا اینه که بتونم یه لبخندی رو روی صورتتون بیارم و از طرفی درکنار هم یه کامیونیتی بزرگ بسازیم که مثلش نباشه</p>
+</div>
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-3">من تو همه پلتفرم ها از جمله، کیک، یوتیوب، دیسکورد و ... فعالیت میکنم و از طریق پنل های زیر استریم میتونید دسترسی داشته باشید</p>
+</div>
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-4">توی استریم حتما به قوانین احترام بزارید چون دوست دارم بدون حاشیه دنبال کارمون باشیم و بتونیم دور از دردسر باشیم و این مورد خیلی اهمیت داره و ممنون میشم رعایت کنید</p>
+</div>
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-5">اگر توی کارم انتقاد یا پیشنهادی داشتید میتونید از طریق دیسکورد تیکت باز کنید و بیان کنید تا بتونیم که کامیونیتی سالمی رو داشته باشیم</p>
+</div>
+<div class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-6">برای اینکه بتونم پیشرفتی توی استریم و تولید محتوا داشته باشم میتوانید از طریق لینک دونیت حمایت مالی کنید، فقط حواستون باشه کارت پدر مادرتون نباشه</p>
+</div>
+<!-- Duplicate set (hidden from screen readers) so the marquee loops seamlessly with no gap -->
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-1">برای همکاری و پارتنرشیپ یا حتی اسپانسرینگ میتونید از طریق دیسکورد تیکت باز کنید تا بتونیم در کنار هم بترکونیم</p>
+</div>
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-2">هدف من از استریم و تولید محتوا اینه که بتونم یه لبخندی رو روی صورتتون بیارم و از طرفی درکنار هم یه کامیونیتی بزرگ بسازیم که مثلش نباشه</p>
+</div>
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-3">من تو همه پلتفرم ها از جمله، کیک، یوتیوب، دیسکورد و ... فعالیت میکنم و از طریق پنل های زیر استریم میتونید دسترسی داشته باشید</p>
+</div>
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-4">توی استریم حتما به قوانین احترام بزارید چون دوست دارم بدون حاشیه دنبال کارمون باشیم و بتونیم دور از دردسر باشیم و این مورد خیلی اهمیت داره و ممنون میشم رعایت کنید</p>
+</div>
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-5">اگر توی کارم انتقاد یا پیشنهادی داشتید میتونید از طریق دیسکورد تیکت باز کنید و بیان کنید تا بتونیم که کامیونیتی سالمی رو داشته باشیم</p>
+</div>
+<div aria-hidden="true" class="about-card">
+<svg class="about-arrow-icon" fill="currentColor" viewbox="0 0 24 24"><path d="M6 4l12 8-12 8V4z"></path></svg>
+<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n="about-fact-6">برای اینکه بتونم پیشرفتی توی استریم و تولید محتوا داشته باشم میتوانید از طریق لینک دونیت حمایت مالی کنید، فقط حواستون باشه کارت پدر مادرتون نباشه</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mt-10 pt-8 border-t border-white/5 quick-reply-block text-center">
+<p class="text-base md:text-lg uppercase tracking-widest text-cyber-orange font-bold mb-5" data-i18n="title-contact">ارتباط با من</p>
+<div class="quick-reply-row">
+<a class="quick-reply-chip" href="https://kick.com/A1iRox" rel="noopener noreferrer" style="--chip-color:#00C760;" target="_blank">
+<svg fill="none" viewbox="0 0 24 24"><text dominant-baseline="central" fill="currentColor" font-family="Arial, sans-serif" font-size="18" font-weight="800" text-anchor="middle" x="12" y="12.5">K</text></svg>
+<span>Kick</span>
+<span class="chip-tooltip" data-i18n="desc-kick">هر شب رأس ساعت اعلام‌شده لایو استریم داریم؛ منتظرتونم</span>
+</a>
+<div class="quick-reply-chip quick-reply-chip--static" style="--chip-color:#FF0000;">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><rect height="14" rx="4" stroke-width="2" width="20" x="2" y="5"></rect><path d="M10 9.5l5 2.5-5 2.5v-5z" fill="currentColor" stroke="none"></path></svg>
+<span>YouTube</span>
+<span class="chip-tooltip" data-i18n="desc-youtube">اینجا کلی ویدیوی خفن و جذاب می‌ذاریم</span>
+</div>
+<a class="quick-reply-chip" href="https://www.instagram.com/alirox.og" rel="noopener noreferrer" style="--chip-color:#E1306C;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+<span>Instagram</span>
+<span class="chip-tooltip" data-i18n="desc-instagram">اینجا کلی ویدیو و محتوای جذاب داریم؛ حتماً یه سر بزن</span>
+</a>
+<a class="quick-reply-chip" href="https://discord.gg/fAJjcCQnuj" rel="noopener noreferrer" style="--chip-color:#5865f2;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.317 4.3928a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path></svg>
+<span>Discord</span>
+<span class="chip-tooltip" data-i18n="desc-discord">اینجا کامیونیتی اصلی منه؛ خوشحال می‌شم به جمعمون اضافه بشی و کنارمون باشی</span>
+</a>
+<a class="quick-reply-chip" href="https://t.me/aliroxtg" rel="noopener noreferrer" style="--chip-color:#29abe2;" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212-.07-.062-.174-.041-.249-.024-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.39 4.025-1.63 4.476-1.638z"></path></svg>
+<span>Telegram</span>
+<span class="chip-tooltip" data-i18n="desc-telegram">اینجا یه کم خودمونی‌تر و نزدیک‌تریم؛ خبرها و اتفاقات رو اینجا باهم دنبال می‌کنیم</span>
+</a>
+<a class="quick-reply-chip" href="https://donofa.ir/alirox/" rel="noopener noreferrer" style="--chip-color:#f97316;" target="_blank">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span data-i18n="label-donate">حمایت مالی</span>
+<span class="chip-tooltip" data-i18n="desc-donate">حمایت شما باعث می‌شه بتونیم استریم‌ها و محتواهای بهتر و بیشتری بسازیم</span>
+</a>
+</div>
+</div>
+</section>
+
+
+<section class="box-outer section-anchor" id="rules">
+<div class="mb-8">
+<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1" data-i18n="label-rules">Community Guidelines</p>
+<h2 class="title--h1 title__separate" data-i18n="title-rules">Community Rules</h2>
+</div>
+<div class="swiper rules-swiper">
+<div class="swiper-wrapper">
+<!-- Slide 1: Stream Rules -->
+<div class="swiper-slide">
+<p class="text-center text-base md:text-lg uppercase tracking-widest text-cyber-orange font-extrabold mb-4" data-i18n="label-slide-stream" style="text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);">Stream Chat Rules</p>
+<div class="rules-chatbox bg-black/40 border border-white/10 rounded-2xl p-5 md:p-6 font-body-md font-medium text-sm space-y-2">
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-1">Courtesy And Respect Are Required</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-2">Insulting The Streamer Is Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-3">Insulting People, Beliefs, Or Any Other Subject Is Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-4">Political Discussions Are Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-5">Using Profanity Is Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-6">Talking Behind The Streamer's Back Or Defaming Them Is Strictly Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-7">No Spamming</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="rule-8">Giving Orders To The Streamer Is Not Allowed</span>
+</div>
+<div class="rule-bubble rule-bubble--footer">
+<span class="text-cyber-orange">💚</span>
+<span class="text-gray-200 font-semibold" data-i18n="rule-footer">Please Respect The Rules So We Can Enjoy Our Time Together</span>
+</div>
+</div>
+</div>
+<!-- Slide 2: Discord Server Rules -->
+<div class="swiper-slide">
+<p class="text-center text-base md:text-lg uppercase tracking-widest text-cyber-orange font-extrabold mb-4" data-i18n="label-slide-discord" style="text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);">Discord Server Rules</p>
+<div class="rules-chatbox bg-black/40 border border-white/10 rounded-2xl p-5 md:p-6 font-body-md font-medium text-sm space-y-2">
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-1">Courtesy And Respect Are Required</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-2">Excessive Jokes And Insults Are Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-3">No Spamming</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-4">Do Not Mention Others Without A Reason</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-5">Political Discussions Are Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-6">Advertising Is Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-7">Do Not Post In Irrelevant Channels</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-8">Talking About Or Gossiping Other Streamers Is Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-9">Insulting Religious, Cultural, Or Any Personal Beliefs Is Strictly Prohibited</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-10">Posting +18 Content Is Forbidden And Will Be Dealt With</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-11">Opening Unnecessary Tickets Will Be Dealt With</span>
+</div>
+<div class="rule-bubble">
+<span class="text-gray-200" data-i18n="drule-12">If You Encounter A Problem Or See Rule Violation, Report It To The Staff</span>
+</div>
+<div class="rule-bubble rule-bubble--footer">
+<span class="text-cyber-orange">💚</span>
+<span class="text-gray-200 font-semibold" data-i18n="drule-footer">The Most Important Thing Is To Be Together — Have Fun, Be Happy, And Respect The Rules</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Swiper Pagination -->
+<div class="swiper-pagination rules-pagination"></div>
+</section>
+<!-- Setup Section -->
+<section class="box-outer section-anchor" id="setup">
+<div class="mb-8">
+<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1" data-i18n="label-hardware">مشخصات سخت‌افزاری</p>
+<h2 class="title--h1 title__separate" data-i18n="title-setup">تجهیزات</h2>
+</div>
+<div class="swiper setup-swiper">
+<div class="swiper-wrapper">
+<!-- Slide 1: Hardware -->
+<div class="swiper-slide">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-6 w-24 h-24 text-white/5 rotate-[15deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 7h3v3H7zM14 7h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3zM10 8.5h4M8.5 10v4M15.5 10v4M10 15.5h4" stroke-linecap="round"></path></svg>
+<svg class="absolute right-14 -bottom-5 w-14 h-14 text-white/[0.06] -rotate-[20deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 7h3v3H7zM14 7h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3zM10 8.5h4M8.5 10v4M15.5 10v4M10 15.5h4" stroke-linecap="round"></path></svg>
+<svg class="absolute right-1 top-14 w-9 h-9 text-white/10 rotate-[40deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M7 7h3v3H7zM14 7h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3zM10 8.5h4M8.5 10v4M15.5 10v4M10 15.5h4" stroke-linecap="round"></path></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-mb">مادربرد</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">ROG STRIX B560-F GAMING WIFI</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-4 -top-5 w-24 h-24 text-white/5 -rotate-[10deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="9" y="9" width="6" height="6" rx="1"></rect><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2" stroke-linecap="round"></path></svg>
+<svg class="absolute right-16 -bottom-6 w-14 h-14 text-white/[0.06] rotate-[18deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="9" y="9" width="6" height="6" rx="1"></rect><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2" stroke-linecap="round"></path></svg>
+<svg class="absolute right-2 top-12 w-8 h-8 text-white/10 -rotate-[30deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="9" y="9" width="6" height="6" rx="1"></rect><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2" stroke-linecap="round"></path></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-cpu">پردازنده</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">11th Gen Intel(R) Core(TM) i5-11400</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-6 w-24 h-24 text-white/5 rotate-[12deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"></rect><circle cx="7" cy="12" r="2"></circle><circle cx="13" cy="12" r="2"></circle><line x1="18" y1="10" x2="18" y2="14" stroke-linecap="round"></line><line x1="20" y1="10" x2="20" y2="14" stroke-linecap="round"></line></svg>
+<svg class="absolute right-14 -bottom-5 w-14 h-14 text-white/[0.06] -rotate-[16deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"></rect><circle cx="7" cy="12" r="2"></circle><circle cx="13" cy="12" r="2"></circle><line x1="18" y1="10" x2="18" y2="14" stroke-linecap="round"></line><line x1="20" y1="10" x2="20" y2="14" stroke-linecap="round"></line></svg>
+<svg class="absolute right-1 top-12 w-9 h-9 text-white/10 rotate-[35deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"></rect><circle cx="7" cy="12" r="2"></circle><circle cx="13" cy="12" r="2"></circle><line x1="18" y1="10" x2="18" y2="14" stroke-linecap="round"></line><line x1="20" y1="10" x2="20" y2="14" stroke-linecap="round"></line></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-gpu">کارت گرافیک</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">RTX 3050 OC 8GB (ASUS)</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-4 -top-6 w-24 h-24 text-white/5 -rotate-[14deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="6" width="18" height="8" rx="1"></rect><line x1="6" y1="14" x2="6" y2="18" stroke-linecap="round"></line><line x1="9" y1="14" x2="9" y2="18" stroke-linecap="round"></line><line x1="12" y1="14" x2="12" y2="18" stroke-linecap="round"></line><line x1="15" y1="14" x2="15" y2="18" stroke-linecap="round"></line><line x1="18" y1="14" x2="18" y2="18" stroke-linecap="round"></line></svg>
+<svg class="absolute right-14 -bottom-4 w-14 h-14 text-white/[0.06] rotate-[10deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="6" width="18" height="8" rx="1"></rect><line x1="6" y1="14" x2="6" y2="18" stroke-linecap="round"></line><line x1="9" y1="14" x2="9" y2="18" stroke-linecap="round"></line><line x1="12" y1="14" x2="12" y2="18" stroke-linecap="round"></line><line x1="15" y1="14" x2="15" y2="18" stroke-linecap="round"></line><line x1="18" y1="14" x2="18" y2="18" stroke-linecap="round"></line></svg>
+<svg class="absolute right-1 top-12 w-9 h-9 text-white/10 -rotate-[25deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="3" y="6" width="18" height="8" rx="1"></rect><line x1="6" y1="14" x2="6" y2="18" stroke-linecap="round"></line><line x1="9" y1="14" x2="9" y2="18" stroke-linecap="round"></line><line x1="12" y1="14" x2="12" y2="18" stroke-linecap="round"></line><line x1="15" y1="14" x2="15" y2="18" stroke-linecap="round"></line><line x1="18" y1="14" x2="18" y2="18" stroke-linecap="round"></line></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-ram">رم</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">32GB RAM DDR4</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl md:col-span-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-8 w-28 h-28 text-white/5 rotate-[15deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="absolute right-24 -bottom-6 w-16 h-16 text-white/[0.06] -rotate-[18deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><line x1="8" y1="8" x2="16" y2="8" stroke-linecap="round"></line><line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"></line><line x1="8" y1="16" x2="12" y2="16" stroke-linecap="round"></line></svg>
+<svg class="absolute right-6 top-10 w-10 h-10 text-white/10 rotate-[35deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="relative z-10 space-y-4">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1 flex items-center gap-2" data-i18n="label-power-storage">منبع تغذیه و حافظه</p>
+<div class="flex items-baseline gap-2">
+<span class="text-xs text-gray-500 uppercase font-bold" data-i18n="label-psu">منبع تغذیه</span>
+<p class="text-lg text-white font-bold">Green GP700B-HP EVO</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1" data-i18n="label-ssd">حافظه SSD اصلی</p>
+<p class="text-sm text-gray-200">Lexar nm620 1TB</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-1" data-i18n="label-hdd">حافظه HDD</p>
+<p class="text-sm text-gray-200">WESTERN BLUE 1TB</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide 2: Peripherals -->
+<div class="swiper-slide">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-6 w-24 h-24 text-white/5 rotate-[15deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="5"></rect><line x1="12" y1="2" x2="12" y2="9" stroke-linecap="round"></line></svg>
+<svg class="absolute right-14 -bottom-5 w-14 h-14 text-white/[0.06] -rotate-[20deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="5"></rect><line x1="12" y1="2" x2="12" y2="9" stroke-linecap="round"></line></svg>
+<svg class="absolute right-1 top-14 w-9 h-9 text-white/10 rotate-[40deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="5"></rect><line x1="12" y1="2" x2="12" y2="9" stroke-linecap="round"></line></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-mouse">موس</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">T-DAGGER T-TGM350</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-4 -top-5 w-24 h-24 text-white/5 -rotate-[10deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="10" x2="6" y2="10.01" stroke-linecap="round"></line><line x1="10" y1="10" x2="10" y2="10.01" stroke-linecap="round"></line><line x1="14" y1="10" x2="14" y2="10.01" stroke-linecap="round"></line><line x1="18" y1="10" x2="18" y2="10.01" stroke-linecap="round"></line><line x1="6" y1="14" x2="18" y2="14" stroke-linecap="round"></line></svg>
+<svg class="absolute right-16 -bottom-6 w-14 h-14 text-white/[0.06] rotate-[18deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="10" x2="6" y2="10.01" stroke-linecap="round"></line><line x1="10" y1="10" x2="10" y2="10.01" stroke-linecap="round"></line><line x1="14" y1="10" x2="14" y2="10.01" stroke-linecap="round"></line><line x1="18" y1="10" x2="18" y2="10.01" stroke-linecap="round"></line><line x1="6" y1="14" x2="18" y2="14" stroke-linecap="round"></line></svg>
+<svg class="absolute right-2 top-12 w-8 h-8 text-white/10 -rotate-[30deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="10" x2="6" y2="10.01" stroke-linecap="round"></line><line x1="10" y1="10" x2="10" y2="10.01" stroke-linecap="round"></line><line x1="14" y1="10" x2="14" y2="10.01" stroke-linecap="round"></line><line x1="18" y1="10" x2="18" y2="10.01" stroke-linecap="round"></line><line x1="6" y1="14" x2="18" y2="14" stroke-linecap="round"></line></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-keyboard">کیبورد</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">Redragon K636 CLO-RGB</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-6 w-24 h-24 text-white/5 rotate-[12deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M4 13v-1a8 8 0 0116 0v1" stroke-linecap="round"></path><rect x="2" y="13" width="4" height="6" rx="2"></rect><rect x="18" y="13" width="4" height="6" rx="2"></rect></svg>
+<svg class="absolute right-14 -bottom-5 w-14 h-14 text-white/[0.06] -rotate-[16deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M4 13v-1a8 8 0 0116 0v1" stroke-linecap="round"></path><rect x="2" y="13" width="4" height="6" rx="2"></rect><rect x="18" y="13" width="4" height="6" rx="2"></rect></svg>
+<svg class="absolute right-1 top-12 w-9 h-9 text-white/10 rotate-[35deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M4 13v-1a8 8 0 0116 0v1" stroke-linecap="round"></path><rect x="2" y="13" width="4" height="6" rx="2"></rect><rect x="18" y="13" width="4" height="6" rx="2"></rect></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-headset">هدست</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">Razer Kraken X Lite</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl group hover:border-cyber-orange transition-all duration-300">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-4 -top-6 w-24 h-24 text-white/5 -rotate-[14deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="absolute right-14 -bottom-4 w-14 h-14 text-white/[0.06] rotate-[10deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="absolute right-1 top-12 w-9 h-9 text-white/10 -rotate-[25deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<p class="relative z-10 text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2" data-i18n="label-monitor">مانیتور اصلی</p>
+<h3 class="relative z-10 text-xl font-bold text-white group-hover:text-cyber-orange transition-colors">Samsung 27" 75Hz</h3>
+</div>
+<div class="relative overflow-hidden p-6 bg-white/5 border-l-4 border-cyber-orange/30 rounded-r-xl md:col-span-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+<div class="absolute inset-0 pointer-events-none">
+<svg class="absolute -right-3 -top-8 w-28 h-28 text-white/5 rotate-[14deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="absolute right-24 -bottom-6 w-16 h-16 text-white/[0.06] -rotate-[16deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="absolute right-6 top-10 w-10 h-10 text-white/10 -rotate-[25deg]" fill="none" stroke="currentColor" stroke-width="1.2" viewbox="0 0 24 24"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="relative z-10">
+<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1 flex items-center gap-2" data-i18n="label-audio">تجهیزات صدا</p>
+<div class="flex items-baseline gap-2">
+<span class="text-xs text-gray-500 uppercase font-bold" data-i18n="label-mic">میکروفون</span>
+<p class="text-lg text-white font-bold">Razer Seiren Mini</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Swiper Pagination -->
+<div class="swiper-pagination setup-pagination"></div>
+</section>
+<!-- Contact Section -->
+</div>
+</div>
+</main>
+<footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-center md:text-left rtl:md:text-right">
+<p class="text-white font-bold text-sm mb-1">A1iRoX Portfolio</p>
+<p class="text-gray-500 text-[10px] uppercase tracking-widest" data-i18n="footer-copy">© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.</p>
+</div>
+<div class="flex gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-500">
+<a class="hover:text-cyber-orange transition-colors" data-i18n="footer-contact-email" href="mailto:alifarajiog@gmail.com?subject=Collaboration">تماس با من</a>
+<button class="hover:text-cyber-orange transition-colors" data-i18n="footer-privacy" id="privacy-open-btn" type="button">حریم خصوصی</button>
+</div>
+</footer>
+
+<!-- Privacy modal -->
+<div class="privacy-modal-overlay" id="privacy-modal-overlay">
+<div class="privacy-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+<button aria-label="Close" class="privacy-modal-close" id="privacy-modal-close" type="button">×</button>
+<p class="chat-bubble-name" id="privacy-modal-title" data-i18n="privacy-title">حریم خصوصی</p>
+<p class="text-gray-300 text-sm leading-relaxed whitespace-pre-line" data-i18n="privacy-body">این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.
+نه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.
+
+دکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.
+
+این سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.
+
+اگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.</p>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+        const translations = {
+            en: {
+                "nav-overview": "Overview",
+                "nav-setup": "Setup",
+                "nav-contact": "Contact",
+                "badge-creator": "Content Creator",
+                "label-name": "Real Name",
+                "val-name": "Ali Faraji",
+                "label-birthday": "Birthday",
+                "val-birthday": "September 15, 2003",
+                "label-location": "Location",
+                "val-location": "Qazvin, Iran",
+                "title-about": "About Me",
+                "text-about-1": "Hi, I'm Ali, born in 2003.\nI've been active in streaming since 2022, and here we're going to enjoy games, conversations, and good moments together.",
+                "text-about-2": "My goal is to build a large, healthy, and drama-free community through entertaining content and interaction with you. Mutual respect, following rules, and maintaining a positive vibe are my priorities. I'm happy to continue this journey with you all. 💚",
+                "label-about-facts": "Quick Facts",
+                "about-fact-1": "Want to collaborate, partner up, or even sponsor the channel? Open a ticket on Discord and let's make something great happen together.",
+                "about-fact-2": "My goal with streaming and content creation is simple — to put a smile on your face, while building a big community together that's truly one of a kind.",
+                "about-fact-3": "I'm active on every platform — Kick, YouTube, Discord, and more. You'll find all the links in the panels below the stream.",
+                "about-fact-4": "Please respect the rules while in stream. I want us to enjoy our time together without drama or trouble — it matters a lot, and I really appreciate it.",
+                "about-fact-5": "Got criticism or a suggestion about my work? Open a ticket on Discord and let me know, so together we can keep this a healthy community.",
+                "about-fact-6": "If you'd like to help me grow as a streamer and creator, you can support me through the donate link — just make sure it's not your parents' card 😄",
+                "label-hardware": "Hardware Specifications",
+                "title-setup": "THE SETUP",
+                "label-mb": "Mainboard",
+                "label-cpu": "Processor",
+                "label-gpu": "Graphics",
+                "label-ram": "Memory",
+                "label-power-storage": "Power & Storage",
+                "label-psu": "PSU",
+                "label-ssd": "Primary SSD",
+                "label-hdd": "Storage HDD",
+                "label-mouse": "Gaming Mouse",
+                "label-keyboard": "Keyboard",
+                "label-headset": "Headset",
+                "label-monitor": "Primary Monitor",
+                "label-audio": "Audio Gear",
+                "label-mic": "Microphone",
+                "title-contact": "Get In Touch",
+                "label-donate": "Donate",
+                "desc-discord": "This is my main community — I'd love for you to join and hang out with us.",
+                "desc-instagram": "Lots of fun videos and content here — definitely worth a look.",
+                "desc-telegram": "A bit more casual and close-knit here — we follow news and updates together.",
+                "desc-kick": "Live stream every night at the announced time — I'll be waiting for you.",
+                "desc-youtube": "Lots of awesome, fun videos posted here.",
+                "desc-donate": "Your support helps me create better and more streams and content.",
+                "label-rules": "Community Guidelines",
+                "title-rules": "Community Rules",
+                "nav-rules": "Community Rules",
+                "rule-1": "Courtesy And Respect Are Required",
+                "rule-2": "Insulting The Streamer Is Prohibited",
+                "rule-3": "Insulting People, Beliefs, Or Any Other Subject Is Prohibited",
+                "rule-4": "Political Discussions Are Prohibited",
+                "rule-5": "Using Profanity Is Prohibited",
+                "rule-6": "Talking Behind The Streamer's Back Or Defaming Them Is Strictly Prohibited",
+                "rule-7": "No Spamming",
+                "rule-8": "Giving Orders To The Streamer Is Not Allowed",
+                "rule-footer": "Please Respect The Rules So We Can Enjoy Our Time Together",
+                "label-slide-stream": "Stream Chat Rules",
+                "label-slide-discord": "Discord Server Rules",
+                "drule-1": "Courtesy And Respect Are Required",
+                "drule-2": "Excessive Jokes And Insults Are Prohibited",
+                "drule-3": "No Spamming",
+                "drule-4": "Do Not Mention Others Without A Reason",
+                "drule-5": "Political Discussions Are Prohibited",
+                "drule-6": "Advertising Is Prohibited",
+                "drule-7": "Do Not Post In Irrelevant Channels",
+                "drule-8": "Talking About Or Gossiping Other Streamers Is Prohibited",
+                "drule-9": "Insulting Religious, Cultural, Or Any Personal Beliefs Is Strictly Prohibited",
+                "drule-10": "Posting +18 Content Is Forbidden And Will Be Dealt With",
+                "drule-11": "Opening Unnecessary Tickets Will Be Dealt With",
+                "drule-12": "If You Encounter A Problem Or See Rule Violation, Report It To The Staff",
+                "drule-footer": "The Most Important Thing Is To Be Together — Have Fun, Be Happy, And Respect The Rules",
+                "footer-copy": "© 2026 A1iRoX. Built for the community.",
+                "footer-privacy": "Privacy Policy",
+                "footer-contact-email": "Contact With Me",
+                "footer-terms": "Terms",
+                "privacy-title": "Privacy Policy",
+                "privacy-body": "This site does not collect, store, or transmit any personal information about you.\nThere's no sign-up form, nothing about you is saved — and no data is ever leaked or shared with any third party.\n\nThe buttons on this site (Discord, Telegram, Instagram, YouTube, Kick, Donate) simply take you to those platforms; anything that happens there is governed by that platform's own rules, not this site.\n\nThis site belongs to me and works mostly as a personal introduction or online business card, not a service or platform. The idea and code behind it are free for anyone to use or take inspiration from.\n\nIf you have any questions, feel free to reach out through Discord or Telegram."
+            },
+            fa: {
+                "nav-overview": "نمای کلی",
+                "nav-setup": "سیستم",
+                "nav-contact": "تماس",
+                "badge-creator": "تولیدکننده محتوا",
+                "label-name": "نام واقعی",
+                "val-name": "علی فرجی",
+                "label-birthday": "تاریخ تو‌لد",
+                "val-birthday": "۲۴ شهریور ۱۳۸۲",
+                "label-location": "موقعیت",
+                "val-location": "قزوین، ایران",
+                "title-about": "درباره من",
+                "text-about-1": "سلام، من علی هستم، متولد سال ۱۳۸۲.\nاز سال ۱۴۰۱ در حوزه استریم فعالیت می‌کنم و اینجا قراره با هم از بازی، گپ‌وگفت و لحظه‌های خوب لذت ببریم.",
+                "text-about-2": "هدف من ساختن یک جامعه بزرگ، سالم و بدون حاشیه از طریق محتوای سرگرم‌کننده و تعامل با شماست. احترام متقابل، رعایت قوانین و حفظ انرژی مثبت اولویت‌های منه. خوشحالم که این مسیر رو با شما ادامه می‌دم. 💚",
+                "label-about-facts": "نکات مهم",
+                "about-fact-1": "برای همکاری و پارتنرشیپ یا حتی اسپانسرینگ میتونید از طریق دیسکورد تیکت باز کنید تا بتونیم در کنار هم بترکونیم",
+                "about-fact-2": "هدف من از استریم و تولید محتوا اینه که بتونم یه لبخندی رو روی صورتتون بیارم و از طرفی درکنار هم یه کامیونیتی بزرگ بسازیم که مثلش نباشه",
+                "about-fact-3": "من تو همه پلتفرم ها از جمله، کیک، یوتیوب، دیسکورد و ... فعالیت میکنم و از طریق پنل های زیر استریم میتونید دسترسی داشته باشید",
+                "about-fact-4": "توی استریم حتما به قوانین احترام بزارید چون دوست دارم بدون حاشیه دنبال کارمون باشیم و بتونیم دور از دردسر باشیم و این مورد خیلی اهمیت داره و ممنون میشم رعایت کنید",
+                "about-fact-5": "اگر توی کارم انتقاد یا پیشنهادی داشتید میتونید از طریق دیسکورد تیکت باز کنید و بیان کنید تا بتونیم که کامیونیتی سالمی رو داشته باشیم",
+                "about-fact-6": "برای اینکه بتونم پیشرفتی توی استریم و تولید محتوا داشته باشم میتوانید از طریق لینک دونیت حمایت مالی کنید، فقط حواستون باشه کارت پدر مادرتون نباشه",
+                "label-hardware": "مشخصات سخت‌افزاری",
+                "title-setup": "تجهیزات",
+                "label-mb": "مادربرد",
+                "label-cpu": "پردازنده",
+                "label-gpu": "کارت گرافیک",
+                "label-ram": "رم",
+                "label-power-storage": "منبع تغذیه و حافظه",
+                "label-psu": "منبع تغذیه",
+                "label-ssd": "حافظه SSD اصلی",
+                "label-hdd": "حافظه HDD",
+                "label-mouse": "موس",
+                "label-keyboard": "کیبورد",
+                "label-headset": "هدست",
+                "label-monitor": "مانیتور اصلی",
+                "label-audio": "تجهیزات صدا",
+                "label-mic": "میکروفون",
+                "title-contact": "ارتباط با من",
+                "label-donate": "حمایت مالی",
+                "desc-discord": "اینجا کامیونیتی اصلی منه؛ خوشحال می‌شم به جمعمون اضافه بشی و کنارمون باشی",
+                "desc-instagram": "اینجا کلی ویدیو و محتوای جذاب داریم؛ حتماً یه سر بزن",
+                "desc-telegram": "اینجا یه کم خودمونی‌تر و نزدیک‌تریم؛ خبرها و اتفاقات رو اینجا باهم دنبال می‌کنیم",
+                "desc-kick": "هر شب رأس ساعت اعلام‌شده لایو استریم داریم؛ منتظرتونم",
+                "desc-youtube": "اینجا کلی ویدیوی خفن و جذاب می‌ذاریم",
+                "desc-donate": "حمایت شما باعث می‌شه بتونیم استریم‌ها و محتواهای بهتر و بیشتری بسازیم",
+                "label-rules": "قوانین انجمن",
+                "title-rules": "قوانین کامیونیتی",
+                "nav-rules": "قوانین کامیونیتی",
+                "rule-1": "رعایت ادب و احترام الزامی است",
+                "rule-2": "توهین به استریمر ممنوع است",
+                "rule-3": "توهین به اشخاص، عقاید یا هر موضوع دیگری ممنوع است",
+                "rule-4": "بحث‌های سیاسی ممنوع است",
+                "rule-5": "استفاده از الفاظ رکیک ممنوع است",
+                "rule-6": "بدگویی یا بردن اسم استریمر به قصد تخریب به‌شدت ممنوع است",
+                "rule-7": "ارسال پیام‌های تکراری یا اسپم ممنوع است",
+                "rule-8": "دستور دادن به استریمر مجاز نیست",
+                "rule-footer": "لطفاً به قوانین احترام بگذارید تا در کنار هم لحظات خوبی داشته باشیم",
+                "label-slide-stream": "قوانین چت استریم",
+                "label-slide-discord": "قوانین سرور دیسکورد",
+                "drule-1": "رعایت ادب و احترام الزامی است",
+                "drule-2": "شوخی بیش از حد و توهین ممنوع است",
+                "drule-3": "ارسال پیام‌های مکرر و اسپم ممنوع است",
+                "drule-4": "منشن کردن دیگران بدون دلیل ممنوع است",
+                "drule-5": "بحث‌های سیاسی ممنوع است",
+                "drule-6": "تبلیغات ممنوع است",
+                "drule-7": "ارسال پیام در چنل‌های نامرتبط ممنوع است",
+                "drule-8": "حرف زدن یا خاله‌زنک‌بازی درباره‌ی استریمرهای دیگر ممنوع است",
+                "drule-9": "توهین به عقاید دینی، فرهنگی یا شخصی کاملاً ممنوع است",
+                "drule-10": "ارسال محتوای ۱۸+ ممنوع است و در صورت مشاهده برخورد می‌شود",
+                "drule-11": "باز کردن تیکت بی‌مورد با برخورد همراه خواهد بود",
+                "drule-12": "در صورت مشاهده‌ی مشکل یا تخلف از قوانین، موضوع را به تیم مدیریت گزارش دهید",
+                "drule-footer": "مهم‌ترین چیز اینه که در کنار هم باشیم — خوش بگذرونیم، شاد باشیم و به قوانین احترام بذاریم",
+                "footer-copy": "© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.",
+                "footer-privacy": "حریم خصوصی",
+                "footer-contact-email": "تماس با من",
+                "footer-terms": "قوانین",
+                "privacy-title": "حریم خصوصی",
+                "privacy-body": "این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.\nنه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.\n\nدکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.\n\nاین سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.\n\nاگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید."
+            }
+        };
+
+        window.switchLang = function(lang) {
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = (lang === 'fa' ? 'rtl' : 'ltr');
+
+            const btnEn = document.getElementById('btn-en');
+            const btnFa = document.getElementById('btn-fa');
+            
+            if (lang === 'fa') {
+                btnFa.classList.add('bg-cyber-orange', 'text-white');
+                btnFa.classList.remove('text-gray-400');
+                btnEn.classList.remove('bg-cyber-orange', 'text-white');
+                btnEn.classList.add('text-gray-400');
+            } else {
+                btnEn.classList.add('bg-cyber-orange', 'text-white');
+                btnEn.classList.remove('text-gray-400');
+                btnFa.classList.remove('bg-cyber-orange', 'text-white');
+                btnFa.classList.add('text-gray-400');
+            }
+
+            $('[data-i18n]').each(function() {
+                const key = $(this).data('i18n');
+                if (translations[lang][key]) {
+                    const val = translations[lang][key];
+                    $(this).html(val.replace(/\n/g, '<br>'));
+                }
+            });
+
+            // Rebuild the swipers so they recalculate slide widths/positions
+            // for the new text direction (fixes blank/black slides in EN mode).
+            initSetupSwiper();
+            initRulesSwiper();
+            
+            console.log('Language switched to: ' + lang);
+        };
+
+        let setupSwiper = null;
+
+        function initSetupSwiper() {
+            if (setupSwiper) {
+                setupSwiper.destroy(true, true);
+                setupSwiper = null;
+            }
+            setupSwiper = new Swiper('.setup-swiper', {
+                loop: true,
+                speed: 800,
+                pagination: {
+                    el: '.setup-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: true,
+                }
+            });
+        }
+
+        let rulesSwiper = null;
+
+        function initRulesSwiper() {
+            if (rulesSwiper) {
+                rulesSwiper.destroy(true, true);
+                rulesSwiper = null;
+            }
+            rulesSwiper = new Swiper('.rules-swiper', {
+                loop: true,
+                speed: 800,
+                autoHeight: true,
+                pagination: {
+                    el: '.rules-pagination',
+                    clickable: true,
+                },
+                autoplay: {
+                    delay: 6000,
+                    disableOnInteraction: true,
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Default the site to English on first load; user can switch to Persian via the FA button
+            switchLang('en');
+
+            // Privacy modal open/close
+            $('#privacy-open-btn').on('click', function () {
+                $('#privacy-modal-overlay').addClass('is-open');
+            });
+            $('#privacy-modal-close, #privacy-modal-overlay').on('click', function (e) {
+                if (e.target === this) {
+                    $('#privacy-modal-overlay').removeClass('is-open');
+                }
+            });
+            $(document).on('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    $('#privacy-modal-overlay').removeClass('is-open');
+                }
+            });
+
+            var isMobileViewport = window.innerWidth < 768;
+
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: isMobileViewport ? 22 : 60, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.2, random: false },
+                    size: { value: 2, random: true },
+                    line_linked: { enable: !isMobileViewport, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: isMobileViewport ? 1 : 2, direction: "none", out_mode: "out" },
+                },
+                interactivity: {
+                    detect_on: "window",
+                    // Hover-grab is a desktop-only interaction (touch has no hover), so it's skipped on mobile
+                    events: { onhover: { enable: !isMobileViewport, mode: "grab" }, onclick: { enable: false }, resize: true },
+                    modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } } },
+                },
+                retina_detect: true,
+            });
+
+            const $mobileMenuBtn = $('#mobile-menu-btn');
+            const $mobileNav = $('#mobile-nav');
+            const $iconOpen = $('#icon-menu-open');
+            const $iconClose = $('#icon-menu-close');
+
+            function closeMobileMenu() {
+                $mobileNav.addClass('hidden').removeClass('flex');
+                $iconOpen.removeClass('hidden');
+                $iconClose.addClass('hidden');
+                $mobileMenuBtn.attr('aria-expanded', 'false');
+            }
+
+            function openMobileMenu() {
+                $mobileNav.removeClass('hidden').addClass('flex');
+                $iconOpen.addClass('hidden');
+                $iconClose.removeClass('hidden');
+                $mobileMenuBtn.attr('aria-expanded', 'true');
+            }
+
+            $mobileMenuBtn.on('click', function() {
+                if ($mobileNav.hasClass('hidden')) {
+                    openMobileMenu();
+                } else {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close the mobile menu if the viewport grows back to desktop size
+            $(window).on('resize', function() {
+                if (window.innerWidth >= 768) {
+                    closeMobileMenu();
+                }
+            });
+
+            $('a.nav-link[href^="#"]').on('click', function(event) {
+                var targetId = this.getAttribute('href');
+                var target = $(targetId);
+                
+                if( target.length ) {
+                    event.preventDefault();
+                    
+                    $('.nav-link').removeClass('active');
+                    $('a.nav-link[href="' + targetId + '"]').addClass('active');
+
+                    closeMobileMenu();
+
+                    target.addClass('section-highlight');
+                    setTimeout(() => {
+                        target.removeClass('section-highlight');
+                    }, 2000);
+
+                    window.scrollTo({
+                        top: target.offset().top - 120,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            const sections = document.querySelectorAll('section.box-outer');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let scrollSpyTicking = false;
+
+            function scrollSpy() {
+                const scrollPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                const offset = 150;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollPos >= sectionTop - offset && scrollPos < sectionTop + sectionHeight - offset) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+
+                scrollSpyTicking = false;
+            }
+
+            $(window).on('scroll', function () {
+                if (!scrollSpyTicking) {
+                    window.requestAnimationFrame(scrollSpy);
+                    scrollSpyTicking = true;
+                }
+            });
+            scrollSpy();
+        });
+    </script>
+</body></html>
