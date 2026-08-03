@@ -1,6 +1,6 @@
 AroX — Personal Site
 
-🔗 Live site: https://alirox.github.io/alirox/
+🔗 Live site: [https://alirox.github.io/alirox/](https://a1irox.github.io/alirox/)
 
 English
 
@@ -8,14 +8,22 @@ A personal introduction and online business-card site for A1iRoX — a streamer 
 
 Features
 🌐 Persian / English language switcher
+
 📱 Fully responsive, mobile-friendly layout
+
 🔗 Quick links to Discord, Telegram, Instagram, YouTube, Kick, and Donate
+
 🔒 Privacy policy popup
 Tech stack
+
 🎨 HTML / Tailwind CSS
+
 ⚡ jQuery
+
 🎠 Swiper.js (Setup and Rules carousels)
+
 ✨ Particles.js (background effect)
+
 Run locally
 
 💻 No installation needed — just open index.html in your browser.
