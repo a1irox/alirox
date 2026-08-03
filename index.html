@@ -543,6 +543,15 @@
             .chip-tooltip {
                 display: none;
             }
+
+            #header-controls {
+                gap: 0.5rem;
+            }
+
+            #header-controls #lang-switcher button {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         }
 
         /* Contact card descriptions */
@@ -623,6 +632,131 @@
         .tour-trigger-btn svg {
             width: 18px;
             height: 18px;
+        }
+
+        /* Patch notes button + modal */
+        .patchnotes-trigger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            color: var(--color-accent);
+            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .patchnotes-trigger-btn:hover {
+            background-color: rgba(249, 115, 22, 0.18);
+            box-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .patchnotes-trigger-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .patchnotes-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .patchnotes-modal-overlay.is-open {
+            display: flex;
+        }
+
+        .patchnotes-modal {
+            max-width: 560px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #1a1c1c;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            animation: privacy-modal-pop 0.25s ease;
+        }
+
+        .patchnotes-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            background: none;
+            border: none;
+            color: var(--color-paragraph);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        [dir="rtl"] .patchnotes-modal-close {
+            right: auto;
+            left: 14px;
+        }
+
+        .patchnotes-modal-close:hover {
+            color: var(--color-accent);
+        }
+
+        .patchnotes-modal .chat-bubble-name {
+            padding-right: 1.5rem;
+        }
+
+        [dir="rtl"] .patchnotes-modal .chat-bubble-name {
+            padding-right: 0;
+            padding-left: 1.5rem;
+        }
+
+        .patchnotes-entry + .patchnotes-entry {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .patchnotes-entry-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .patchnotes-version {
+            font-weight: 800;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+
+        .patchnotes-date {
+            font-size: 0.75rem;
+            color: rgba(163, 230, 53, 0.85);
+        }
+
+        .patchnotes-entry ul {
+            list-style: disc;
+            padding-right: 1.25rem;
+            margin: 0;
+        }
+
+        [dir="ltr"] .patchnotes-entry ul {
+            padding-right: 0;
+            padding-left: 1.25rem;
+        }
+
+        .patchnotes-entry li + li {
+            margin-top: 0.35rem;
         }
 
         /* Dark veil with a cut-out "spotlight" box drawn via a giant box-shadow,
@@ -791,9 +925,12 @@
 <a class="nav-link" data-i18n="nav-rules" href="#rules">Community Rules</a>
 <a class="nav-link" data-i18n="nav-setup" href="#setup">سیستم</a>
 </nav>
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-4" id="header-controls">
 <button aria-label="Site Tour" class="tour-trigger-btn" data-i18n-title="tour-btn-title" id="tour-trigger-btn" title="Take a tour" type="button">
 <svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 18h.01M9.09 9a3 3 0 015.83 1c0 2-3 2-3 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><circle cx="12" cy="12" r="9" stroke-width="2"></circle></svg>
+</button>
+<button aria-label="Patch Notes" class="patchnotes-trigger-btn" data-i18n-title="patchnotes-btn-title" id="patchnotes-open-btn" title="Patch notes" type="button">
+<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 3h6a1 1 0 011 1v1h1a2 2 0 012 2v13a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h1V4a1 1 0 011-1z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M9 11h6M9 15h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 <div class="flex bg-white/5 p-1 rounded-lg text-[10px] font-bold border border-white/10" id="lang-switcher">
 <button class="px-3 py-1 rounded transition-colors hover:text-white text-gray-400" id="btn-fa" onclick="switchLang('fa')">FA</button>
@@ -1240,6 +1377,36 @@
 </div>
 </div>
 
+<!-- Patch notes modal -->
+<div class="patchnotes-modal-overlay" id="patchnotes-modal-overlay">
+<div class="patchnotes-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="patchnotes-modal-title">
+<button aria-label="Close" class="patchnotes-modal-close" id="patchnotes-modal-close" type="button">×</button>
+<p class="chat-bubble-name" id="patchnotes-modal-title" data-i18n="patchnotes-title">تغییرات نسخه</p>
+<div id="patchnotes-list">
+<div class="patchnotes-entry" data-lang="en">
+<div class="patchnotes-entry-header">
+<span class="patchnotes-version">v0.1.1-beta</span>
+<span class="patchnotes-date">2026-08-03</span>
+</div>
+<ul>
+<li>Updated the guided tour text for a cleaner flow.</li>
+<li>Set the header tagline to stay consistent across both language versions, no longer switching when the language toggle is used.</li>
+</ul>
+</div>
+<div class="patchnotes-entry" data-lang="fa" style="display:none">
+<div class="patchnotes-entry-header">
+<span class="patchnotes-version">v0.1.1-beta</span>
+<span class="patchnotes-date">2026-08-03</span>
+</div>
+<ul>
+<li>متن راهنمای مرحله‌به‌مرحله برای روان‌تر شدن به‌روزرسانی شد.</li>
+<li>متن تگ‌لاین هدر طوری تنظیم شد که در هر دو زبان ثابت بمونه و با تغییر زبان عوض نشه.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
 <!-- Guided Tour overlay: spotlight box + connecting arrow + info tooltip -->
 <div class="tour-spotlight" id="tour-spotlight"></div>
 <div class="tour-arrow" id="tour-arrow"></div>
@@ -1360,6 +1527,8 @@
                 "tour-7-desc": "My streaming hardware — PC specs, peripherals, and audio gear. Swipe to see everything I use.",
                 "tour-8-title": "Come Back Anytime",
                 "tour-8-desc": "This tour button stays right here in the header — click it whenever you want a refresher. Enjoy the site! 💚",
+                "patchnotes-btn-title": "Patch notes",
+                "patchnotes-title": "Version history",
             },
             fa: {
                 "nav-overview": "نمای کلی",
@@ -1461,6 +1630,8 @@
                 "tour-7-desc": "مشخصات سیستم و لوازم استریم من از جمله سخت‌افزار، وسایل جانبی و تجهیزات صدا؛ برای دیدن همه‌شون سوایپ کنید.",
                 "tour-8-title": "هر وقت خواستید دوباره ببینید",
                 "tour-8-desc": "این دکمه راهنما همیشه همینجا توی هدر می‌مونه؛ هر وقت خواستید یه بار دیگه مرورش کنید کافیه روش بزنید. از سایت لذت ببرید 💚",
+                "patchnotes-btn-title": "یادداشت تغییرات",
+                "patchnotes-title": "تغییرات نسخه",
             }
         };
 
@@ -1504,6 +1675,11 @@
                 if (translations[lang][key]) {
                     $(this).attr('title', translations[lang][key]);
                 }
+            });
+
+            // Show only the patch-notes entries matching the active language
+            $('#patchnotes-list .patchnotes-entry').each(function() {
+                $(this).toggle($(this).data('lang') === lang);
             });
 
             // Rebuild the swipers so they recalculate slide widths/positions
@@ -1760,9 +1936,19 @@
                 }
             });
 
+            $('#patchnotes-open-btn').on('click', function () {
+                $('#patchnotes-modal-overlay').addClass('is-open');
+            });
+            $('#patchnotes-modal-close, #patchnotes-modal-overlay').on('click', function (e) {
+                if (e.target === this) {
+                    $('#patchnotes-modal-overlay').removeClass('is-open');
+                }
+            });
+
             $(document).on('keydown', function (e) {
                 if (e.key === 'Escape') {
                     $('#privacy-modal-overlay').removeClass('is-open');
+                    $('#patchnotes-modal-overlay').removeClass('is-open');
                 }
             });
 
