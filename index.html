@@ -567,25 +567,50 @@
         }
 
         /* Stream Rules chat bubbles */
+        .rules-chatbox {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            counter-reset: rule;
+        }
+
         .rule-bubble {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 0.5rem;
+            justify-content: flex-start;
+            text-align: left;
+            gap: 0.75rem;
             background-color: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
-            padding: 0.6rem 0.9rem;
-            font-size: 0.8rem;
+            padding: 0.8rem 1.1rem;
+            font-size: 0.85rem;
             line-height: 1.5;
             transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
 
+        .rule-bubble::before {
+            counter-increment: rule;
+            content: counter(rule, decimal-leading-zero);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            background-color: rgba(249, 115, 22, 0.12);
+            color: var(--color-accent);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            font-weight: 700;
+        }
+
         [dir="rtl"] .rule-bubble {
             font-family: "Vazirmatn", sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 500;
+            text-align: right;
         }
 
         .rule-bubble:hover {
@@ -596,7 +621,25 @@
         }
 
         .rule-bubble--footer {
-            border-top: none;
+            justify-content: center;
+            text-align: center;
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+            background: none;
+            padding: 1rem 0 0;
+            margin-top: 0.35rem;
+        }
+
+        .rule-bubble--footer:hover {
+            background: none;
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+            transform: none;
+        }
+
+        .rule-bubble--footer::before {
+            display: none;
         }
 
         /* Reliable, non-jumpy sticky sidebar (replaces the sticky-kit plugin behavior) */
@@ -608,64 +651,125 @@
             }
         }
 
-        /* ===================== Guided Tour ("راهنما") ===================== */
-        .tour-trigger-btn {
+        /* Collapsible section triggers (Stream Rules / The Setup) */
+        .section-trigger-wrap {
+            padding: 0 !important;
+            overflow: hidden;
+        }
+
+        .section-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.375rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            font-family: inherit;
+            text-align: left;
+            transition: background-color 0.3s ease;
+        }
+
+        [dir="rtl"] .section-trigger {
+            text-align: right;
+        }
+
+        .section-trigger:hover {
+            background-color: rgba(249, 115, 22, 0.06);
+        }
+
+        .section-trigger-icon {
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background-color: rgba(249, 115, 22, 0.12);
+            color: var(--color-accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(249, 115, 22, 0.08);
-            border: 1px solid rgba(249, 115, 22, 0.35);
+            transition: transform 0.3s ease;
+        }
+
+        .section-trigger-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .section-trigger:hover .section-trigger-icon {
+            transform: scale(1.06);
+        }
+
+        .section-trigger-text {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-trigger-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             color: var(--color-accent);
-            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-trigger-title {
+            font-family: "Sora", "Vazirmatn", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fcfcfc;
+            margin-bottom: 2px;
+        }
+
+        .section-trigger-hint {
+            font-size: 0.76rem;
+            color: rgba(214, 214, 214, 0.5);
+        }
+
+        .section-trigger-arrow {
             flex-shrink: 0;
-        }
-
-        .tour-trigger-btn:hover {
-            background-color: rgba(249, 115, 22, 0.18);
-            box-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
-            transform: translateY(-2px);
-        }
-
-        .tour-trigger-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        /* Patch notes button + modal */
-        .patchnotes-trigger-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(249, 115, 22, 0.08);
-            border: 1px solid rgba(249, 115, 22, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .section-trigger-arrow svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        [dir="rtl"] .section-trigger-arrow svg {
+            transform: rotate(180deg);
+        }
+
+        .section-trigger:hover .section-trigger-arrow {
+            border-color: var(--color-accent);
             color: var(--color-accent);
-            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
-            flex-shrink: 0;
+            transform: translateX(4px);
         }
 
-        .patchnotes-trigger-btn:hover {
-            background-color: rgba(249, 115, 22, 0.18);
-            box-shadow: 0 0 12px rgba(249, 115, 22, 0.35);
-            transform: translateY(-2px);
+        [dir="rtl"] .section-trigger:hover .section-trigger-arrow {
+            transform: translateX(-4px);
         }
 
-        .patchnotes-trigger-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .patchnotes-modal-overlay {
+        /* Shared modal shell used to expand the collapsed sections above */
+        .section-modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 100;
-            background: rgba(10, 10, 10, 0.7);
+            background: rgba(10, 10, 10, 0.75);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             align-items: center;
@@ -673,246 +777,93 @@
             padding: 20px;
         }
 
-        .patchnotes-modal-overlay.is-open {
+        .section-modal-overlay.is-open {
             display: flex;
         }
 
-        .patchnotes-modal {
-            max-width: 560px;
+        .section-modal {
+            max-width: 780px;
             width: 100%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             overflow-x: hidden;
             background: #1a1c1c;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-20);
+            padding: 1.875rem;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
             animation: privacy-modal-pop 0.25s ease;
         }
 
-        .patchnotes-modal-close {
+        .section-modal-close {
             position: absolute;
-            top: 10px;
-            right: 14px;
-            background: none;
-            border: none;
+            top: 14px;
+            right: 18px;
+            z-index: 5;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--color-paragraph);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             line-height: 1;
             cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        [dir="rtl"] .patchnotes-modal-close {
-            right: auto;
-            left: 14px;
-        }
-
-        .patchnotes-modal-close:hover {
-            color: var(--color-accent);
-        }
-
-        .patchnotes-modal .chat-bubble-name {
-            padding-right: 1.5rem;
-        }
-
-        [dir="rtl"] .patchnotes-modal .chat-bubble-name {
-            padding-right: 0;
-            padding-left: 1.5rem;
-        }
-
-        .patchnotes-entry + .patchnotes-entry {
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .patchnotes-entry-header {
-            display: flex;
-            align-items: baseline;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.5rem;
-        }
-
-        .patchnotes-version {
-            font-weight: 800;
-            color: var(--color-accent);
-            font-size: 0.9rem;
-        }
-
-        .patchnotes-date {
-            font-size: 0.75rem;
-            color: rgba(163, 230, 53, 0.85);
-        }
-
-        .patchnotes-entry ul {
-            list-style: disc;
-            padding-right: 1.25rem;
-            margin: 0;
-        }
-
-        [dir="ltr"] .patchnotes-entry ul {
-            padding-right: 0;
-            padding-left: 1.25rem;
-        }
-
-        .patchnotes-entry li + li {
-            margin-top: 0.35rem;
-        }
-
-        /* Dark veil with a cut-out "spotlight" box drawn via a giant box-shadow,
-           so the highlighted element itself stays bright/clickable while
-           everything else dims. */
-        .tour-spotlight {
-            position: fixed;
-            z-index: 9998;
-            border-radius: 14px;
-            box-shadow: 0 0 0 9999px rgba(5, 5, 6, 0.78);
-            border: 2px solid var(--color-accent);
-            box-shadow: 0 0 0 9999px rgba(5, 5, 6, 0.78), 0 0 25px rgba(249, 115, 22, 0.55), inset 0 0 15px rgba(249, 115, 22, 0.25);
-            pointer-events: none;
-            transition: top 0.4s cubic-bezier(.4,0,.2,1), left 0.4s cubic-bezier(.4,0,.2,1),
-                        width 0.4s cubic-bezier(.4,0,.2,1), height 0.4s cubic-bezier(.4,0,.2,1);
-            display: none;
-        }
-
-        .tour-spotlight.is-active { display: block; }
-
-        .tour-tooltip {
-            position: fixed;
-            z-index: 9999;
-            max-width: 300px;
-            width: calc(100vw - 32px);
-            background: #17181a;
-            border: 1px solid rgba(249, 115, 22, 0.4);
-            border-radius: 16px;
-            padding: 1.1rem 1.25rem;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 20px rgba(249,115,22,0.15);
-            display: none;
-            transition: top 0.4s cubic-bezier(.4,0,.2,1), left 0.4s cubic-bezier(.4,0,.2,1);
-        }
-
-        .tour-tooltip.is-active { display: block; }
-
-        .tour-tooltip-step {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-        }
-
-        .tour-tooltip-title {
-            font-family: 'Sora', 'Vazirmatn', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .tour-tooltip-desc {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--color-paragraph);
-            margin-bottom: 1rem;
-        }
-
-        .tour-tooltip-footer {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
 
-        .tour-dots {
-            display: flex;
-            gap: 5px;
+        [dir="rtl"] .section-modal-close {
+            right: auto;
+            left: 18px;
         }
 
-        .tour-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            transition: background-color 0.25s ease, transform 0.25s ease;
+        .section-modal-close:hover {
+            color: #fff;
+            border-color: var(--color-accent);
+            background-color: rgba(249, 115, 22, 0.15);
         }
 
-        .tour-dot.is-current {
-            background: var(--color-accent);
-            transform: scale(1.3);
-        }
-
-        .tour-tooltip-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .tour-btn-nav {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.35rem 0.75rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            color: #d6d6d6;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .tour-btn-nav:hover {
-            background-color: rgba(255,255,255,0.09);
-        }
-
-        .tour-btn-nav--primary {
-            background: var(--color-gradient);
-            color: #1a0d00;
-            border: none;
-        }
-
-        .tour-btn-skip {
-            position: absolute;
-            top: 0.6rem;
-            inset-inline-end: 0.7rem;
-            background: none;
-            border: none;
-            color: #7c7c7c;
-            font-size: 0.7rem;
-            cursor: pointer;
-        }
-
-        .tour-btn-skip:hover {
-            color: #d6d6d6;
-        }
-
-        /* Small directional arrow connecting the tooltip card to its target */
-        .tour-arrow {
+        /* ============ Easter Egg Toast ============ */
+        #konami-toast {
             position: fixed;
-            z-index: 9999;
-            width: 14px;
-            height: 14px;
-            background: #17181a;
-            border: 1px solid rgba(249, 115, 22, 0.4);
-            transform: rotate(45deg);
-            display: none;
-            transition: top 0.4s cubic-bezier(.4,0,.2,1), left 0.4s cubic-bezier(.4,0,.2,1);
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 200;
+            background: rgba(10, 10, 10, 0.92);
+            border: 1px solid #f97316;
+            box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+            color: #ffb690;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 13px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+            white-space: nowrap;
         }
 
-        .tour-arrow.is-active { display: block; }
+        #konami-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
 
-        .tour-arrow--top { border-right: none; border-bottom: none; }
-        .tour-arrow--bottom { border-left: none; border-top: none; }
-        .tour-arrow--left { border-top: none; border-right: none; }
-        .tour-arrow--right { border-bottom: none; border-left: none; }
-
-        @media (max-width: 640px) {
-            .tour-tooltip { max-width: none; }
+        body.konami-active #particles-js {
+            filter: hue-rotate(220deg) saturate(1.6);
         }
     </style>
 </head>
 <body class="antialiased">
+<div id="konami-toast">🎮 SECRET UNLOCKED — TRUE GAMER CONFIRMED</div>
 <div id="particles-js"></div>
 <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center" data-purpose="main-header">
-<div class="flex flex-col leading-tight" id="tour-target-brand">
+<div class="flex flex-col leading-tight">
 <div class="text-xl font-extrabold tracking-tighter text-white">
             A1i<span class="text-cyber-orange">RoX</span>
 </div>
@@ -922,16 +873,10 @@
 </div>
 <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-400" id="main-nav">
 <a class="nav-link active" data-i18n="nav-overview" href="#overview">نمای کلی</a>
-<a class="nav-link" data-i18n="nav-rules" href="#rules">Community Rules</a>
+<a class="nav-link" data-i18n="nav-rules" href="#rules">Stream Rules</a>
 <a class="nav-link" data-i18n="nav-setup" href="#setup">سیستم</a>
 </nav>
 <div class="flex items-center gap-4" id="header-controls">
-<button aria-label="Site Tour" class="tour-trigger-btn" data-i18n-title="tour-btn-title" id="tour-trigger-btn" title="Take a tour" type="button">
-<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 18h.01M9.09 9a3 3 0 015.83 1c0 2-3 2-3 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><circle cx="12" cy="12" r="9" stroke-width="2"></circle></svg>
-</button>
-<button aria-label="Patch Notes" class="patchnotes-trigger-btn" data-i18n-title="patchnotes-btn-title" id="patchnotes-open-btn" title="Patch notes" type="button">
-<svg fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 3h6a1 1 0 011 1v1h1a2 2 0 012 2v13a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h1V4a1 1 0 011-1z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M9 11h6M9 15h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
 <div class="flex bg-white/5 p-1 rounded-lg text-[10px] font-bold border border-white/10" id="lang-switcher">
 <button class="px-3 py-1 rounded transition-colors hover:text-white text-gray-400" id="btn-fa" onclick="switchLang('fa')">FA</button>
 <button class="px-3 py-1 rounded shadow-lg bg-cyber-orange text-white" id="btn-en" onclick="switchLang('en')">EN</button>
@@ -943,7 +888,7 @@
 </div>
 <nav class="md:hidden hidden flex-col gap-1 absolute top-full left-0 w-full px-6 py-4 text-sm font-medium text-gray-400" id="mobile-nav" style="background: rgba(10, 10, 10, 0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
 <a class="nav-link py-3 border-b border-white/5 active" data-i18n="nav-overview" href="#overview">نمای کلی</a>
-<a class="nav-link py-3 border-b border-white/5" data-i18n="nav-rules" href="#rules">Community Rules</a>
+<a class="nav-link py-3 border-b border-white/5" data-i18n="nav-rules" href="#rules">Stream Rules</a>
 <a class="nav-link py-3" data-i18n="nav-setup" href="#setup">سیستم</a>
 </nav>
 </header>
@@ -1120,17 +1065,83 @@
 </section>
 
 
-<section class="box-outer section-anchor" id="rules">
+<section class="box-outer section-anchor section-trigger-wrap" id="rules">
+<button aria-haspopup="dialog" class="section-trigger" data-modal-open="rules-modal-overlay" type="button">
+<span class="section-trigger-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="section-trigger-text">
+<span class="section-trigger-label" data-i18n="label-rules">Stream Guidelines</span>
+<span class="section-trigger-title" data-i18n="title-rules">Stream Rules</span>
+<span class="section-trigger-hint" data-i18n="rules-trigger-hint">Tap to see the stream chat rules</span>
+</span>
+<span class="section-trigger-arrow">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+</button>
+</section>
+<!-- Setup Section -->
+<!-- Setup Section -->
+<section class="box-outer section-anchor section-trigger-wrap" id="setup">
+<button aria-haspopup="dialog" class="section-trigger" data-modal-open="setup-modal-overlay" type="button">
+<span class="section-trigger-icon">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M8 21h8M12 17v4" stroke-linecap="round"></path><path d="M7 9h4M7 12h6" stroke-linecap="round"></path></svg>
+</span>
+<span class="section-trigger-text">
+<span class="section-trigger-label" data-i18n="label-hardware">مشخصات سخت‌افزاری</span>
+<span class="section-trigger-title" data-i18n="title-setup">تجهیزات</span>
+<span class="section-trigger-hint" data-i18n="setup-trigger-hint">برای دیدن سخت‌افزار و لوازم جانبی کلیک کن</span>
+</span>
+<span class="section-trigger-arrow">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+</button>
+</section>
+<!-- Contact Section -->
+</div>
+</div>
+</main>
+<footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-center md:text-left rtl:md:text-right">
+<p class="text-white font-bold text-sm mb-1">A1iRoX Portfolio</p>
+<p class="text-gray-500 text-[10px] uppercase tracking-widest" data-i18n="footer-copy">© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.</p>
+</div>
+<div class="flex gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-500">
+<a class="hover:text-cyber-orange transition-colors" data-i18n="footer-contact-email" href="https://t.me/alirox_admin" rel="noopener noreferrer" target="_blank">تماس با من</a>
+<button class="hover:text-cyber-orange transition-colors" data-i18n="footer-privacy" id="privacy-open-btn" type="button">حریم خصوصی</button>
+</div>
+</footer>
+
+<!-- Privacy modal -->
+<div class="privacy-modal-overlay" id="privacy-modal-overlay">
+<div class="privacy-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
+<button aria-label="Close" class="privacy-modal-close" id="privacy-modal-close" type="button">×</button>
+<p class="chat-bubble-name" id="privacy-modal-title" data-i18n="privacy-title">حریم خصوصی</p>
+<p class="text-gray-300 text-sm leading-relaxed whitespace-pre-line" data-i18n="privacy-body">این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.
+نه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.
+
+دکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.
+
+این سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.
+
+اگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.</p>
+</div>
+</div>
+
+<!-- Stream Rules modal (expanded from the compact trigger card) -->
+<div class="section-modal-overlay" id="rules-modal-overlay">
+<div class="section-modal" role="dialog" aria-modal="true" aria-labelledby="rules-modal-title">
+<button aria-label="Close" class="section-modal-close" id="rules-modal-close" type="button">×</button>
 <div class="mb-8">
-<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1" data-i18n="label-rules">Community Guidelines</p>
-<h2 class="title--h1 title__separate" data-i18n="title-rules">Community Rules</h2>
+<p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1" data-i18n="label-rules">Stream Guidelines</p>
+<h2 class="title--h1 title__separate" data-i18n="title-rules" id="rules-modal-title">Stream Rules</h2>
 </div>
 <div class="swiper rules-swiper">
 <div class="swiper-wrapper">
 <!-- Slide 1: Stream Rules -->
 <div class="swiper-slide">
 <p class="text-center text-base md:text-lg uppercase tracking-widest text-cyber-orange font-extrabold mb-4" data-i18n="label-slide-stream" style="text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);">Stream Chat Rules</p>
-<div class="rules-chatbox bg-black/40 border border-white/10 rounded-2xl p-5 md:p-6 font-body-md font-medium text-sm space-y-2">
+<div class="rules-chatbox bg-black/40 border border-white/10 rounded-2xl p-4 md:p-5 font-body-md font-medium text-sm">
 <div class="rule-bubble">
 <span class="text-gray-200" data-i18n="rule-1">Courtesy And Respect Are Required</span>
 </div>
@@ -1161,62 +1172,17 @@
 </div>
 </div>
 </div>
-<!-- Slide 2: Discord Server Rules -->
-<div class="swiper-slide">
-<p class="text-center text-base md:text-lg uppercase tracking-widest text-cyber-orange font-extrabold mb-4" data-i18n="label-slide-discord" style="text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);">Discord Server Rules</p>
-<div class="rules-chatbox bg-black/40 border border-white/10 rounded-2xl p-5 md:p-6 font-body-md font-medium text-sm space-y-2">
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-1">Courtesy And Respect Are Required</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-2">Excessive Jokes And Insults Are Prohibited</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-3">No Spamming</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-4">Do Not Mention Others Without A Reason</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-5">Political Discussions Are Prohibited</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-6">Advertising Is Prohibited</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-7">Do Not Post In Irrelevant Channels</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-8">Talking About Or Gossiping Other Streamers Is Prohibited</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-9">Insulting Religious, Cultural, Or Any Personal Beliefs Is Strictly Prohibited</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-10">Posting +18 Content Is Forbidden And Will Be Dealt With</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-11">Opening Unnecessary Tickets Will Be Dealt With</span>
-</div>
-<div class="rule-bubble">
-<span class="text-gray-200" data-i18n="drule-12">If You Encounter A Problem Or See Rule Violation, Report It To The Staff</span>
-</div>
-<div class="rule-bubble rule-bubble--footer">
-<span class="text-cyber-orange">💚</span>
-<span class="text-gray-200 font-semibold" data-i18n="drule-footer">The Most Important Thing Is To Be Together — Have Fun, Be Happy, And Respect The Rules</span>
 </div>
 </div>
 </div>
 </div>
-</div>
-<!-- Swiper Pagination -->
-<div class="swiper-pagination rules-pagination"></div>
-</section>
-<!-- Setup Section -->
-<section class="box-outer section-anchor" id="setup">
+<!-- Setup / Equipment modal (expanded from the compact trigger card) -->
+<div class="section-modal-overlay" id="setup-modal-overlay">
+<div class="section-modal" role="dialog" aria-modal="true" aria-labelledby="setup-modal-title">
+<button aria-label="Close" class="section-modal-close" id="setup-modal-close" type="button">×</button>
 <div class="mb-8">
 <p class="text-[10px] uppercase tracking-widest text-cyber-orange font-bold mb-1" data-i18n="label-hardware">مشخصات سخت‌افزاری</p>
-<h2 class="title--h1 title__separate" data-i18n="title-setup">تجهیزات</h2>
+<h2 class="title--h1 title__separate" data-i18n="title-setup" id="setup-modal-title">تجهیزات</h2>
 </div>
 <div class="swiper setup-swiper">
 <div class="swiper-wrapper">
@@ -1345,85 +1311,8 @@
 </div>
 <!-- Swiper Pagination -->
 <div class="swiper-pagination setup-pagination"></div>
-</section>
-<!-- Contact Section -->
 </div>
 </div>
-</main>
-<footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="text-center md:text-left rtl:md:text-right">
-<p class="text-white font-bold text-sm mb-1">A1iRoX Portfolio</p>
-<p class="text-gray-500 text-[10px] uppercase tracking-widest" data-i18n="footer-copy">© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.</p>
-</div>
-<div class="flex gap-8 text-[10px] uppercase tracking-widest font-bold text-gray-500">
-<a class="hover:text-cyber-orange transition-colors" data-i18n="footer-contact-email" href="https://t.me/alirox_admin" rel="noopener noreferrer" target="_blank">تماس با من</a>
-<button class="hover:text-cyber-orange transition-colors" data-i18n="footer-privacy" id="privacy-open-btn" type="button">حریم خصوصی</button>
-</div>
-</footer>
-
-<!-- Privacy modal -->
-<div class="privacy-modal-overlay" id="privacy-modal-overlay">
-<div class="privacy-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title">
-<button aria-label="Close" class="privacy-modal-close" id="privacy-modal-close" type="button">×</button>
-<p class="chat-bubble-name" id="privacy-modal-title" data-i18n="privacy-title">حریم خصوصی</p>
-<p class="text-gray-300 text-sm leading-relaxed whitespace-pre-line" data-i18n="privacy-body">این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.
-نه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.
-
-دکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.
-
-این سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.
-
-اگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.</p>
-</div>
-</div>
-
-<!-- Patch notes modal -->
-<div class="patchnotes-modal-overlay" id="patchnotes-modal-overlay">
-<div class="patchnotes-modal chat-bubble" role="dialog" aria-modal="true" aria-labelledby="patchnotes-modal-title">
-<button aria-label="Close" class="patchnotes-modal-close" id="patchnotes-modal-close" type="button">×</button>
-<p class="chat-bubble-name" id="patchnotes-modal-title" data-i18n="patchnotes-title">تغییرات نسخه</p>
-<div id="patchnotes-list">
-<div class="patchnotes-entry" data-lang="en">
-<div class="patchnotes-entry-header">
-<span class="patchnotes-version">v0.1.1-beta</span>
-<span class="patchnotes-date">2026-08-03</span>
-</div>
-<ul>
-<li>Updated the guided tour text for a cleaner flow.</li>
-<li>Set the header tagline to stay consistent across both language versions, no longer switching when the language toggle is used.</li>
-</ul>
-</div>
-<div class="patchnotes-entry" data-lang="fa" style="display:none">
-<div class="patchnotes-entry-header">
-<span class="patchnotes-version">v0.1.1-beta</span>
-<span class="patchnotes-date">2026-08-03</span>
-</div>
-<ul>
-<li>متن راهنمای مرحله‌به‌مرحله برای روان‌تر شدن به‌روزرسانی شد.</li>
-<li>متن تگ‌لاین هدر طوری تنظیم شد که در هر دو زبان ثابت بمونه و با تغییر زبان عوض نشه.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-
-<!-- Guided Tour overlay: spotlight box + connecting arrow + info tooltip -->
-<div class="tour-spotlight" id="tour-spotlight"></div>
-<div class="tour-arrow" id="tour-arrow"></div>
-<div class="tour-tooltip" id="tour-tooltip">
-<button class="tour-btn-skip" id="tour-skip-btn" type="button">✕</button>
-<p class="tour-tooltip-step" id="tour-step-label">STEP 1/7</p>
-<p class="tour-tooltip-title" id="tour-title"></p>
-<p class="tour-tooltip-desc" id="tour-desc"></p>
-<div class="tour-tooltip-footer">
-<div class="tour-dots" id="tour-dots"></div>
-<div class="tour-tooltip-actions">
-<button class="tour-btn-nav" id="tour-prev-btn" type="button">Back</button>
-<button class="tour-btn-nav tour-btn-nav--primary" id="tour-next-btn" type="button">Next</button>
-</div>
-</div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <script>
         const translations = {
@@ -1450,6 +1339,7 @@
                 "about-fact-6": "If you'd like to help me grow as a streamer and creator, you can support me through the donate link — just make sure it's not your parents' card 😄",
                 "label-hardware": "Hardware Specifications",
                 "title-setup": "THE SETUP",
+                "setup-trigger-hint": "Tap to see the hardware & peripherals",
                 "label-mb": "Mainboard",
                 "label-cpu": "Processor",
                 "label-gpu": "Graphics",
@@ -1472,9 +1362,10 @@
                 "desc-kick": "Live stream every night at the announced time — I'll be waiting for you.",
                 "desc-youtube": "Lots of awesome, fun videos posted here.",
                 "desc-donate": "Your support helps me create better and more streams and content.",
-                "label-rules": "Community Guidelines",
-                "title-rules": "Community Rules",
-                "nav-rules": "Community Rules",
+                "label-rules": "Stream Guidelines",
+                "title-rules": "Stream Rules",
+                "nav-rules": "Stream Rules",
+                "rules-trigger-hint": "Tap to see the stream chat rules",
                 "rule-1": "Courtesy And Respect Are Required",
                 "rule-2": "Insulting The Streamer Is Prohibited",
                 "rule-3": "Insulting People, Beliefs, Or Any Other Subject Is Prohibited",
@@ -1485,20 +1376,6 @@
                 "rule-8": "Giving Orders To The Streamer Is Not Allowed",
                 "rule-footer": "Please Respect The Rules So We Can Enjoy Our Time Together",
                 "label-slide-stream": "Stream Chat Rules",
-                "label-slide-discord": "Discord Server Rules",
-                "drule-1": "Courtesy And Respect Are Required",
-                "drule-2": "Excessive Jokes And Insults Are Prohibited",
-                "drule-3": "No Spamming",
-                "drule-4": "Do Not Mention Others Without A Reason",
-                "drule-5": "Political Discussions Are Prohibited",
-                "drule-6": "Advertising Is Prohibited",
-                "drule-7": "Do Not Post In Irrelevant Channels",
-                "drule-8": "Talking About Or Gossiping Other Streamers Is Prohibited",
-                "drule-9": "Insulting Religious, Cultural, Or Any Personal Beliefs Is Strictly Prohibited",
-                "drule-10": "Posting +18 Content Is Forbidden And Will Be Dealt With",
-                "drule-11": "Opening Unnecessary Tickets Will Be Dealt With",
-                "drule-12": "If You Encounter A Problem Or See Rule Violation, Report It To The Staff",
-                "drule-footer": "The Most Important Thing Is To Be Together — Have Fun, Be Happy, And Respect The Rules",
                 "footer-copy": "© 2026 A1iRoX. Built for the community.",
                 "footer-privacy": "Privacy Policy",
                 "footer-contact-email": "Contact With Me",
@@ -1506,29 +1383,7 @@
                 "privacy-title": "Privacy Policy",
                 "privacy-body": "This site does not collect, store, or transmit any personal information about you.\nThere's no sign-up form, nothing about you is saved — and no data is ever leaked or shared with any third party.\n\nThe buttons on this site (Discord, Telegram, Instagram, YouTube, Kick, Donate) simply take you to those platforms; anything that happens there is governed by that platform's own rules, not this site.\n\nThis site belongs to me and works mostly as a personal introduction or online business card, not a service or platform. The idea and code behind it are free for anyone to use or take inspiration from.\n\nIf you have any questions, feel free to reach out through Discord or Telegram.",
                 "about-status-online": "Online 🟢",
-                "tour-btn-title": "Take a site tour",
-                "tour-back": "Back",
-                "tour-next": "Next",
-                "tour-done": "Got it",
-                "tour-step-label": "STEP {n} / {total}",
-                "tour-1-title": "Welcome to A1iRoX 👋",
-                "tour-1-desc": "This is my personal portfolio page. Quick tour incoming — click Next to see what everything does, or the ✕ to skip anytime.",
-                "tour-2-title": "Language Switch",
-                "tour-2-desc": "Toggle the whole site between English and Persian (فارسی) any time with these two buttons.",
-                "tour-3-title": "Profile Card",
-                "tour-3-desc": "Your quick-glance info: my photo, name, birthday, location, and social/donate icons — all one click away.",
-                "tour-4-title": "About Me",
-                "tour-4-desc": "A short intro from me, plus a scrolling strip of quick facts about collaborations, the community, and how I create content.",
-                "tour-5-title": "Get In Touch",
-                "tour-5-desc": "Direct links to Kick, YouTube, Instagram, Discord, Telegram, and the donate page — hover any icon for a quick description.",
-                "tour-6-title": "Community Rules",
-                "tour-6-desc": "The dos and don'ts for the stream chat and the Discord server. Swipe between the two rule sets here.",
-                "tour-7-title": "The Setup",
-                "tour-7-desc": "My streaming hardware — PC specs, peripherals, and audio gear. Swipe to see everything I use.",
-                "tour-8-title": "Come Back Anytime",
-                "tour-8-desc": "This tour button stays right here in the header — click it whenever you want a refresher. Enjoy the site! 💚",
-                "patchnotes-btn-title": "Patch notes",
-                "patchnotes-title": "Version history",
+
             },
             fa: {
                 "nav-overview": "نمای کلی",
@@ -1553,6 +1408,7 @@
                 "about-fact-6": "برای اینکه بتونم پیشرفتی توی استریم و تولید محتوا داشته باشم میتوانید از طریق لینک دونیت حمایت مالی کنید، فقط حواستون باشه کارت پدر مادرتون نباشه",
                 "label-hardware": "مشخصات سخت‌افزاری",
                 "title-setup": "تجهیزات",
+                "setup-trigger-hint": "برای دیدن سخت‌افزار و لوازم جانبی کلیک کن",
                 "label-mb": "مادربرد",
                 "label-cpu": "پردازنده",
                 "label-gpu": "کارت گرافیک",
@@ -1575,9 +1431,10 @@
                 "desc-kick": "هر شب رأس ساعت اعلام‌شده لایو استریم داریم؛ منتظرتونم",
                 "desc-youtube": "اینجا کلی ویدیوی خفن و جذاب می‌ذاریم",
                 "desc-donate": "حمایت شما باعث می‌شه بتونیم استریم‌ها و محتواهای بهتر و بیشتری بسازیم",
-                "label-rules": "قوانین انجمن",
-                "title-rules": "قوانین کامیونیتی",
-                "nav-rules": "قوانین کامیونیتی",
+                "label-rules": "راهنمای استریم",
+                "title-rules": "قوانین استریم",
+                "nav-rules": "قوانین استریم",
+                "rules-trigger-hint": "برای دیدن قوانین چت استریم کلیک کن",
                 "rule-1": "رعایت ادب و احترام الزامی است",
                 "rule-2": "توهین به استریمر ممنوع است",
                 "rule-3": "توهین به اشخاص، عقاید یا هر موضوع دیگری ممنوع است",
@@ -1588,20 +1445,6 @@
                 "rule-8": "دستور دادن به استریمر مجاز نیست",
                 "rule-footer": "لطفاً به قوانین احترام بگذارید تا در کنار هم لحظات خوبی داشته باشیم",
                 "label-slide-stream": "قوانین چت استریم",
-                "label-slide-discord": "قوانین سرور دیسکورد",
-                "drule-1": "رعایت ادب و احترام الزامی است",
-                "drule-2": "شوخی بیش از حد و توهین ممنوع است",
-                "drule-3": "ارسال پیام‌های مکرر و اسپم ممنوع است",
-                "drule-4": "منشن کردن دیگران بدون دلیل ممنوع است",
-                "drule-5": "بحث‌های سیاسی ممنوع است",
-                "drule-6": "تبلیغات ممنوع است",
-                "drule-7": "ارسال پیام در چنل‌های نامرتبط ممنوع است",
-                "drule-8": "حرف زدن یا خاله‌زنک‌بازی درباره‌ی استریمرهای دیگر ممنوع است",
-                "drule-9": "توهین به عقاید دینی، فرهنگی یا شخصی کاملاً ممنوع است",
-                "drule-10": "ارسال محتوای ۱۸+ ممنوع است و در صورت مشاهده برخورد می‌شود",
-                "drule-11": "باز کردن تیکت بی‌مورد با برخورد همراه خواهد بود",
-                "drule-12": "در صورت مشاهده‌ی مشکل یا تخلف از قوانین، موضوع را به تیم مدیریت گزارش دهید",
-                "drule-footer": "مهم‌ترین چیز اینه که در کنار هم باشیم — خوش بگذرونیم، شاد باشیم و به قوانین احترام بذاریم",
                 "footer-copy": "© ۲۰۲۶ A1iRoX. ساخته شده برای جامعه.",
                 "footer-privacy": "حریم خصوصی",
                 "footer-contact-email": "تماس با من",
@@ -1609,29 +1452,7 @@
                 "privacy-title": "حریم خصوصی",
                 "privacy-body": "این سایت هیچ اطلاعات شخصی‌ای از شما جمع‌آوری، ذخیره یا منتقل نمی‌کنه.\nنه فرم ثبت‌نامی هست، نه چیزی از شما ذخیره میشه — و هیچ داده‌ای هم به جایی درز نمی‌کنه یا در اختیار شخص ثالثی قرار نمی‌گیره.\n\nدکمه‌های موجود در سایت (دیسکورد، تلگرام، اینستاگرام، یوتیوب، کیک، دونیت) فقط شما رو به همون پلتفرم‌ها هدایت می‌کنن؛ اونجا هرچی رد و بدل بشه، تابع قوانین همون پلتفرمه، نه این سایت.\n\nاین سایت متعلق به منه و بیشتر نقش یه معرفی شخصی یا کارت ویزیت آنلاین رو داره تا یه سرویس یا پلتفرم. ایده و ساختار کدش هم برای عموم آزاده — هر کسی می‌تونه ازش الهام بگیره یا استفاده کنه.\n\nاگه سوالی داشتید، از طریق دیسکورد یا تلگرام می‌تونید باهام در ارتباط باشید.",
                 "about-status-online": "آنلاین 🟢",
-                "tour-btn-title": "راهنمای سایت",
-                "tour-back": "قبلی",
-                "tour-next": "بعدی",
-                "tour-done": "متوجه شدم",
-                "tour-step-label": "مرحله {n} از {total}",
-                "tour-1-title": "به A1iRoX خوش اومدی 👋",
-                "tour-1-desc": "این صفحه شخصی منه. یه تور کوتاه براتون آماده کردم که ببینید هر بخش چیه و چیکار می‌کنه؛ برای رفتن به مرحله بعد «بعدی» و برای رد کردن هر وقت خواستید ✕ رو بزنید.",
-                "tour-2-title": "تغییر زبان",
-                "tour-2-desc": "با این دو دکمه می‌تونید کل سایت رو بین انگلیسی و فارسی جابه‌جا کنید.",
-                "tour-3-title": "کارت پروفایل",
-                "tour-3-desc": "اطلاعات سریع من: عکس، نام، تاریخ تولد، موقعیت مکانی و آیکون‌های شبکه‌های اجتماعی و دونیت، همه با یه کلیک در دسترسن.",
-                "tour-4-title": "درباره من",
-                "tour-4-desc": "یه معرفی کوتاه از من، به همراه یه نوار متحرک از نکات مهم درباره همکاری، کامیونیتی و روند تولید محتوا.",
-                "tour-5-title": "ارتباط با من",
-                "tour-5-desc": "لینک مستقیم به کیک، یوتیوب، اینستاگرام، دیسکورد، تلگرام و صفحه دونیت؛ روی هر آیکون هاور کنید تا توضیح کوتاهش رو ببینید.",
-                "tour-6-title": "قوانین کامیونیتی",
-                "tour-6-desc": "قوانین چت استریم و سرور دیسکورد اینجاست؛ می‌تونید بین این دو دسته قانون سوایپ کنید.",
-                "tour-7-title": "تجهیزات",
-                "tour-7-desc": "مشخصات سیستم و لوازم استریم من از جمله سخت‌افزار، وسایل جانبی و تجهیزات صدا؛ برای دیدن همه‌شون سوایپ کنید.",
-                "tour-8-title": "هر وقت خواستید دوباره ببینید",
-                "tour-8-desc": "این دکمه راهنما همیشه همینجا توی هدر می‌مونه؛ هر وقت خواستید یه بار دیگه مرورش کنید کافیه روش بزنید. از سایت لذت ببرید 💚",
-                "patchnotes-btn-title": "یادداشت تغییرات",
-                "patchnotes-title": "تغییرات نسخه",
+
             }
         };
 
@@ -1677,22 +1498,13 @@
                 }
             });
 
-            // Show only the patch-notes entries matching the active language
-            $('#patchnotes-list .patchnotes-entry').each(function() {
-                $(this).toggle($(this).data('lang') === lang);
-            });
-
-            // Rebuild the swipers so they recalculate slide widths/positions
-            // for the new text direction (fixes blank/black slides in EN mode).
-            initSetupSwiper();
-            initRulesSwiper();
-
-            // If the guided tour is currently open, refresh its text and
-            // re-measure the current target so the tooltip stays in sync
-            // with the new language/direction.
-            if (typeof window.__tourRefresh === 'function') {
-                window.__tourRefresh();
-            }
+            // Only rebuild swipers that have already been created (i.e. their
+            // modal has been opened at least once). Building them while still
+            // hidden inside a closed modal gives Swiper a zero-size container
+            // and breaks its internal math (which was also silently killing
+            // every other click handler registered after this point).
+            if (setupSwiper) initSetupSwiper();
+            if (rulesSwiper) initRulesSwiper();
 
             console.log('Language switched to: ' + lang);
         };
@@ -1725,202 +1537,15 @@
                 rulesSwiper.destroy(true, true);
                 rulesSwiper = null;
             }
+            // Only one slide (Stream Chat Rules) remains here now, so loop/autoplay/
+            // pagination — which all need 2+ slides — are switched off. Swiper still
+            // handles sizing/scroll for us, it just won't try to rotate anything.
             rulesSwiper = new Swiper('.rules-swiper', {
-                loop: true,
+                loop: false,
                 speed: 800,
                 autoHeight: true,
-                pagination: {
-                    el: '.rules-pagination',
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 6000,
-                    disableOnInteraction: true,
-                }
             });
         }
-
-        /* ===================== Guided Tour logic ===================== */
-        // Opt-in only: nothing here runs automatically on page load — it only
-        // starts when the visitor clicks the tour button, so it never nags
-        // returning visitors.
-        (function () {
-            const tourSteps = [
-                { selector: '#tour-target-brand', key: 1 },
-                { selector: '#lang-switcher', key: 2 },
-                { selector: '.sidebar .box-outer', key: 3 },
-                { selector: '#overview', key: 4 },
-                { selector: '.quick-reply-row', key: 5 },
-                { selector: '#rules', key: 6 },
-                { selector: '#setup', key: 7 },
-                { selector: '#tour-trigger-btn', key: 8 },
-            ];
-
-            let currentStep = 0;
-            let isOpen = false;
-
-            const $spotlight = $('#tour-spotlight');
-            const $tooltip = $('#tour-tooltip');
-            const $arrow = $('#tour-arrow');
-            const $title = $('#tour-title');
-            const $desc = $('#tour-desc');
-            const $stepLabel = $('#tour-step-label');
-            const $dots = $('#tour-dots');
-            const $prevBtn = $('#tour-prev-btn');
-            const $nextBtn = $('#tour-next-btn');
-
-            function currentLang() {
-                return document.documentElement.lang === 'fa' ? 'fa' : 'en';
-            }
-
-            function t(key) {
-                const lang = currentLang();
-                return (translations[lang] && translations[lang][key]) || '';
-            }
-
-            function buildDots() {
-                $dots.empty();
-                tourSteps.forEach(function (_, i) {
-                    $dots.append('<span class="tour-dot' + (i === currentStep ? ' is-current' : '') + '"></span>');
-                });
-            }
-
-            function findVisibleTarget(selector) {
-                const $el = $(selector).filter(':visible').first();
-                return $el.length ? $el : $(selector).first();
-            }
-
-            function positionForStep() {
-                const step = tourSteps[currentStep];
-                const $target = findVisibleTarget(step.selector);
-                if (!$target.length) {
-                    // Target not present/visible right now (e.g. hidden on this
-                    // viewport) — just skip straight past it.
-                    goToStep(currentStep + 1);
-                    return;
-                }
-
-                const target = $target[0];
-                target.scrollIntoView({ block: 'center', behavior: 'smooth' });
-
-                // Give the smooth-scroll a moment to settle before measuring.
-                setTimeout(function () {
-                    const rect = target.getBoundingClientRect();
-                    const pad = 8;
-                    const boxTop = rect.top - pad;
-                    const boxLeft = rect.left - pad;
-                    const boxW = rect.width + pad * 2;
-                    const boxH = rect.height + pad * 2;
-
-                    $spotlight.css({ top: boxTop + 'px', left: boxLeft + 'px', width: boxW + 'px', height: boxH + 'px' });
-
-                    const viewportW = window.innerWidth;
-                    const viewportH = window.innerHeight;
-                    const tooltipW = Math.min(300, viewportW - 32);
-
-                    // Decide whether the tooltip sits below or above the target
-                    const spaceBelow = viewportH - (boxTop + boxH);
-                    const placeBelow = spaceBelow > 190 || boxTop < 190;
-
-                    $tooltip.css({ width: tooltipW + 'px' });
-                    // Measure the tooltip's real rendered height (title + description +
-                    // footer/buttons) so it can never get clamped off the bottom of the
-                    // screen — otherwise the Next/Back buttons end up unreachable.
-                    const th = $tooltip.outerHeight();
-
-                    let tooltipTop = placeBelow ? (boxTop + boxH + 18) : (boxTop - 18 - th);
-                    let arrowClass = placeBelow ? 'tour-arrow--top' : 'tour-arrow--bottom';
-
-                    let tooltipLeft = boxLeft + boxW / 2 - tooltipW / 2;
-                    tooltipLeft = Math.max(16, Math.min(tooltipLeft, viewportW - tooltipW - 16));
-
-                    // Clamp so the *entire* tooltip box (including its footer buttons)
-                    // always stays within the viewport, with a small margin top and bottom.
-                    tooltipTop = Math.max(12, Math.min(tooltipTop, viewportH - th - 12));
-
-                    $tooltip.css({ top: tooltipTop + 'px', left: tooltipLeft + 'px' });
-
-                    const arrowLeft = Math.max(boxLeft + 20, Math.min(boxLeft + boxW / 2 - 7, tooltipLeft + tooltipW - 28));
-                    const arrowTop = placeBelow ? (boxTop + boxH + 11) : (tooltipTop + $tooltip.outerHeight() - 7);
-
-                    $arrow.attr('class', 'tour-arrow is-active ' + arrowClass);
-                    $arrow.css({ top: arrowTop + 'px', left: arrowLeft + 'px' });
-                }, 260);
-            }
-
-            function renderStep() {
-                const step = tourSteps[currentStep];
-                $stepLabel.text(t('tour-step-label').replace('{n}', currentStep + 1).replace('{total}', tourSteps.length));
-                $title.text(t('tour-' + step.key + '-title'));
-                $desc.text(t('tour-' + step.key + '-desc'));
-                $prevBtn.toggle(currentStep > 0).text(t('tour-back'));
-                $nextBtn.text(currentStep === tourSteps.length - 1 ? t('tour-done') : t('tour-next'));
-                buildDots();
-                positionForStep();
-
-                // The rules swiper uses autoHeight, so its box keeps growing/shrinking
-                // as autoplay rotates between the (differently sized) Stream and Discord
-                // rule slides. If that happens while the spotlight is highlighting it,
-                // the glow drifts out of sync with the box. Freeze autoplay for the
-                // duration of this step, then let it resume once the tour moves on.
-                if (rulesSwiper && rulesSwiper.autoplay) {
-                    if (step.selector === '#rules') {
-                        rulesSwiper.autoplay.stop();
-                    } else {
-                        rulesSwiper.autoplay.start();
-                    }
-                }
-            }
-
-            function goToStep(i) {
-                if (i < 0) { closeTour(); return; }
-                if (i >= tourSteps.length) { closeTour(); return; }
-                currentStep = i;
-                renderStep();
-            }
-
-            function openTour() {
-                isOpen = true;
-                currentStep = 0;
-                $spotlight.addClass('is-active');
-                $tooltip.addClass('is-active');
-                renderStep();
-            }
-
-            function closeTour() {
-                isOpen = false;
-                $spotlight.removeClass('is-active');
-                $tooltip.removeClass('is-active');
-                $arrow.removeClass('is-active');
-                if (rulesSwiper && rulesSwiper.autoplay) {
-                    rulesSwiper.autoplay.start();
-                }
-            }
-
-            $(document).on('click', '#tour-trigger-btn', function () {
-                openTour();
-            });
-            $(document).on('click', '#tour-skip-btn', function () {
-                closeTour();
-            });
-            $(document).on('click', '#tour-next-btn', function () {
-                goToStep(currentStep + 1);
-            });
-            $(document).on('click', '#tour-prev-btn', function () {
-                goToStep(currentStep - 1);
-            });
-            $(document).on('keydown', function (e) {
-                if (isOpen && e.key === 'Escape') closeTour();
-            });
-            $(window).on('resize scroll', function () {
-                if (isOpen) positionForStep();
-            });
-
-            // Let switchLang() refresh the open tour's copy + position
-            window.__tourRefresh = function () {
-                if (isOpen) renderStep();
-            };
-        })();
 
         $(document).ready(function () {
             // Default the site to English on first load; user can switch to Persian via the FA button
@@ -1936,42 +1561,66 @@
                 }
             });
 
-            $('#patchnotes-open-btn').on('click', function () {
-                $('#patchnotes-modal-overlay').addClass('is-open');
+            // Stream Rules / Setup: compact trigger cards open a modal
+            // with the full content instead of taking up page space. The
+            // swipers inside are only built the moment the modal becomes
+            // visible, so Swiper always measures a properly-sized container
+            // (building them earlier, while hidden, used to break autoplay).
+            $('.section-trigger[data-modal-open]').on('click', function () {
+                var targetId = $(this).data('modal-open');
+                $('#' + targetId).addClass('is-open');
+                setTimeout(function () {
+                    if (targetId === 'rules-modal-overlay') initRulesSwiper();
+                    if (targetId === 'setup-modal-overlay') initSetupSwiper();
+                }, 50);
             });
-            $('#patchnotes-modal-close, #patchnotes-modal-overlay').on('click', function (e) {
+            $('.section-modal-close').on('click', function () {
+                $(this).closest('.section-modal-overlay').removeClass('is-open');
+            });
+            $('.section-modal-overlay').on('click', function (e) {
                 if (e.target === this) {
-                    $('#patchnotes-modal-overlay').removeClass('is-open');
+                    $(this).removeClass('is-open');
                 }
             });
 
             $(document).on('keydown', function (e) {
                 if (e.key === 'Escape') {
                     $('#privacy-modal-overlay').removeClass('is-open');
-                    $('#patchnotes-modal-overlay').removeClass('is-open');
+                    $('.section-modal-overlay').removeClass('is-open');
                 }
             });
 
             var isMobileViewport = window.innerWidth < 768;
 
-            particlesJS("particles-js", {
-                particles: {
-                    number: { value: isMobileViewport ? 22 : 60, density: { enable: true, value_area: 800 } },
-                    color: { value: "#ffffff" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.2, random: false },
-                    size: { value: 2, random: true },
-                    line_linked: { enable: !isMobileViewport, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 },
-                    move: { enable: true, speed: isMobileViewport ? 1 : 2, direction: "none", out_mode: "out" },
-                },
-                interactivity: {
-                    detect_on: "window",
-                    // Hover-grab is a desktop-only interaction (touch has no hover), so it's skipped on mobile
-                    events: { onhover: { enable: !isMobileViewport, mode: "grab" }, onclick: { enable: false }, resize: true },
-                    modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } } },
-                },
-                retina_detect: true,
-            });
+            // Guarded: if the particles.js CDN script is blocked (ad-blockers commonly
+            // flag "particles" scripts) or fails to load in time, calling this would
+            // throw and silently prevent every handler registered below it (mobile
+            // menu, nav links, scroll spy) from ever being bound. The background
+            // effect just gets skipped instead.
+            try {
+                if (typeof particlesJS === 'function') {
+                    particlesJS("particles-js", {
+                        particles: {
+                            number: { value: isMobileViewport ? 22 : 60, density: { enable: true, value_area: 800 } },
+                            color: { value: "#ffffff" },
+                            shape: { type: "circle" },
+                            opacity: { value: 0.2, random: false },
+                            size: { value: 2, random: true },
+                            line_linked: { enable: !isMobileViewport, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 },
+                            move: { enable: true, speed: isMobileViewport ? 1 : 2, direction: "none", out_mode: "out" },
+                        },
+                        interactivity: {
+                            detect_on: "window",
+                            // Hover-grab is a desktop-only interaction (touch has no hover), so it's skipped on mobile
+                            events: { onhover: { enable: !isMobileViewport, mode: "grab" }, onclick: { enable: false }, resize: true },
+                            modes: { grab: { distance: 200, line_linked: { opacity: 0.5 } } },
+                        },
+                        retina_detect: true,
+                    });
+                }
+            } catch (e) {
+                console.warn('particles.js failed to initialize; continuing without the background effect.', e);
+            }
 
             const $mobileMenuBtn = $('#mobile-menu-btn');
             const $mobileNav = $('#mobile-nav');
@@ -2010,15 +1659,19 @@
             $('a.nav-link[href^="#"]').on('click', function(event) {
                 var targetId = this.getAttribute('href');
                 var target = $(targetId);
-                
+
                 if( target.length ) {
                     event.preventDefault();
-                    
+
                     $('.nav-link').removeClass('active');
                     $('a.nav-link[href="' + targetId + '"]').addClass('active');
 
                     closeMobileMenu();
 
+                    // Every nav item — including Stream Rules / Setup — just scrolls
+                    // to and highlights its section, same as Overview. Opening their
+                    // popup is left to the card itself (tap the card to see the
+                    // full content), not to the nav link.
                     target.addClass('section-highlight');
                     setTimeout(() => {
                         target.removeClass('section-highlight');
@@ -2065,6 +1718,37 @@
                 }
             });
             scrollSpy();
+
+            /* ============ 2. Konami Code Easter Egg ============ */
+            (function konamiCode() {
+                var sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+                var pos = 0;
+
+                $(document).on('keydown', function (e) {
+                    var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+                    if (key === sequence[pos]) {
+                        pos++;
+                        if (pos === sequence.length) {
+                            pos = 0;
+                            triggerEasterEgg();
+                        }
+                    } else {
+                        pos = (key === sequence[0]) ? 1 : 0;
+                    }
+                });
+
+                function triggerEasterEgg() {
+                    $('body').addClass('konami-active');
+                    $('#konami-toast').addClass('show');
+                    setTimeout(function () {
+                        $('#konami-toast').removeClass('show');
+                    }, 3200);
+                    setTimeout(function () {
+                        $('body').removeClass('konami-active');
+                    }, 4500);
+                }
+            })();
+
         });
     </script>
 </body></html>
